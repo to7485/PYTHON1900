@@ -1,9 +1,9 @@
 # 실습 환경 구축하기
 
 ## 내 PC에 실습을 위한 폴더 만들기
-내 PC -> D드라이브 진입 -> JAVA1900_이니셜 -> 안에 util,work 폴더만들기
+내 PC -> D드라이브 진입 -> PYTHON1900_이니셜 -> 안에 util,work 폴더만들기
 
-![image](https://user-images.githubusercontent.com/54658614/211975967-b510f6c6-1f98-4372-b52c-65c6ed39bb6e.png)
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/f4bce1d3-d084-4877-b44b-78d6c6443958)
 
 ## 프로그램
 - 컴퓨터가 실행할 수 있는 명령들을 모음
