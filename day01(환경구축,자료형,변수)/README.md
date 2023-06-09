@@ -112,7 +112,7 @@ Anaconda Navigator를 실행하면 아나콘다 로고와 함께 검은색 창�
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/629bf4c3-e1e3-4a0d-bcc0-665990ab82c3)
 
-- # c.NotebookApp.notebook_dir="경로"  부분을 찾아서 내가 원하는 경로를 대입하고 앞의 #을 제거합니다.
+- \# c.NotebookApp.notebook_dir="경로"  부분을 찾아서 내가 원하는 경로를 대입하고 앞의 \#을 제거합니다.
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/dccc2d76-51cf-4dac-a474-8b58b4a36c20)
 
