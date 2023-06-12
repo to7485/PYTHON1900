@@ -30,10 +30,8 @@ print('마틴\t010-8765-1234')
 
 ### print()함수
 - 사실 print()함수를 정석적으로 사용하고자 한다면 다음과 같이 작성해야 한다.
-```
-
+```py
 print(value. ..., sep='', end='\n', file=sys.stdout, flush=False)
-
 ```
 
 |속성명|속성 의미|기본값|기본값 의미|
@@ -55,7 +53,7 @@ print(value. ..., sep='', end='\n', file=sys.stdout, flush=False)
 |%s|string|문자열|
 
 #### 사용법
-```
+```py
 print('형식문자' % 데이터)
 ```
 
