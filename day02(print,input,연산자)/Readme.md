@@ -57,6 +57,50 @@ print(value. ..., sep='', end='\n', file=sys.stdout, flush=False)
 print('형식문자' % 데이터)
 ```
 
+```py
+name = 'kai'
+print('내 이름은 %s입니다.' % name)
+
+height = 120.5
+print('제 키는 %fcm입니다.' % height)
+
+weight = 23.55
+print('제 몸무게는 %.1fkg입니다.' % weight)
+
+year, month, day = 2014, 8, 25
+print('제 생일은 %d년 %d월 %d일입니다.' %(year,month,day))
+```
+
+### format()메서드
+- format()메서드로 인수나 변수의 값을 표시하고, 해당 값이 표시될 위맃를 중괄호({})로 표시하는 방식
+
+```py
+'My name is {}'.format('James')
+>>> My name is James
+```
+- 괄호안에 순번을 넣어 지정하여 출력을 할수도 있다.
+```
+'My name is {0}'.format('James')
+>>> My name is James
+```py
+- 내가 출력하고자 하는 변수명을 지정할수도 있다.
+- 이럴경우 반드시 format()메서드에 '변수병=값'과 같은 방식으로 인수를 지정해야 한다.
+
+```py
+'My name is {name}'.format(name='James')
+>>> My name is James
+```
+- 2개 이상의 인수를 사용하는 경우
+```py
+'My name is {}. I\'m {}years old'.format('James',25)
+>>> My name is James. I'm 25years old
+
+'My name is {1}. I\'m {0}years old'.format(25,'James')
+>>> My name is James. I'm 25years old
+
+'My name is {name}. I\'m {age}years old'.format(name='James',age=25)
+>>> My name is James. I'm 25years old
+```
 
 
 
