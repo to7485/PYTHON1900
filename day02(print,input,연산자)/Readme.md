@@ -290,15 +290,128 @@ a,b = b, a
 print(f'a = {a}, b = {b}')
 ```
 
+### 복합대입연산자
+- 복합대입연산자를 통해서 연산을 먼저 진행하고 그 결과를 변수에 저장한다.
 
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용 방법 </th>
+    <th> 의미 </th>
+  </tr>
+  <tr>
+    <td> += </td>
+    <td> a += 2 </td>
+    <td> 변수 a에 2를 더한 값을 저장합니다. </td>
+  </tr>
+    <tr>
+    <td> -= </td>
+    <td> a -= 2 </td>
+    <td> 변수 a에 2를 뺀 값을 저장합니다. </td>
+  </tr>
+  <tr>
+    <td> *= </td>
+    <td> a *= 2 </td>
+    <td> 변수 a에 2를 곱한 값을 저장합니다. </td>
+  </tr>
+  <tr>
+    <td> **= </td>
+    <td> a **= 2 </td>
+    <td> 변수 a에 2를 거듭제곱 값을 저장합니다. </td>
+  </tr>
+  <tr>
+    <td> /= </td>
+    <td> a /= 2 </td>
+    <td> 변수 a에 2로 나눈 값을 저장합니다. </td>
+  </tr>
+  <tr>
+    <td> //= </td>
+    <td> a //= 2 </td>
+    <td> 변수 a에 2로 나눈 몫 값을 저장합니다. </td>
+  </tr>
+  <tr>
+    <td> %= </td>
+    <td> a %= 2 </td>
+    <td> 변수 a에 2로 나눈 나머지를 저장합니다. </td>
+  </tr>
+</table>
 
+```py
+piggy_bank = 0
 
+money = 10000
+piggy_bank += money
+print(f'저금통에 용돈 {money}원을 넣었습니다')
+print(f'지금 저금통에는 {piggy_bank}원이 있습니다.)
 
+snack = 2000
+piggy_bank -= snack
+print(f'저금통에 용돈 {money}원을 넣었습니다')
+print(f'지금 저금통에는 {piggy_bank}원이 있습니다.')
+```
 
+### 관계연산자
+- 2개의 항을 비교하여 그 결과를 논리(bool)자료형으로 반환하는 연산자입니다.
+- 프로그램의 흐름을 제어하는 제어문에서 널리 활용되는 연산자이기 때문에 반드시 알아둬야 한다.
 
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용 방법 </th>
+    <th> 의미 </th>
+    <th> 결과 </th>
+  </tr>
+  <tr>
+    <td> > </td>
+    <td> a > 10 </td>
+    <td> 크다. </td>
+    <td> a가 10보다 크다면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> < </td>
+    <td> a < 10 </td>
+    <td> 작다. </td>
+    <td> a가 10보다 작다면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> >= </td>
+    <td> a >= 10 </td>
+    <td> 크거나 같다. </td>
+    <td> a가 10보다 크거나 같다면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> <= </td>
+    <td> a <= 10 </td>
+    <td> 작거나 같다. </td>
+    <td> a가 10보다 작거나 같다면 True, 아니면 False </td>
+  </tr>
+    <tr>
+    <td> == </td>
+    <td> a == 10 </td>
+    <td> 같다. </td>
+    <td> a가 10이면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> != </td>
+    <td> a != 10 </td>
+    <td> 같지 않다. </td>
+    <td> a가 10이 아니면 True, 아니면 False </td>
+  </tr> 
+</table>
 
+```py
+a = 15
+print(f'{a} > 10 : { a > 10}')
+print(f'{a} < 10 : { a < 10}')
+print(f'{a} >= 10 : { a >= 10}')
+print(f'{a} <= 10 : { a <= 10}')
+print(f'{a} == 10 : { a == 10}')
+print(f'{a} != 10 : { a != 10}')
+```
 
-
+### 논리연산자
+- 논리연산자는 관계 연산자와 함께 사용되는 연산자로 2개 이상의 항을 논리적으로 연결할 때 사용하는 and, or연산자
+- 1개의 항을 논리적으로 처리하는 not 연산자로 구성되어 있습니다.
 
 
 
