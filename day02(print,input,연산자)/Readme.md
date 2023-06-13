@@ -413,6 +413,112 @@ print(f'{a} != 10 : { a != 10}')
 - 논리연산자는 관계 연산자와 함께 사용되는 연산자로 2개 이상의 항을 논리적으로 연결할 때 사용하는 and, or연산자
 - 1개의 항을 논리적으로 처리하는 not 연산자로 구성되어 있습니다.
 
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용 방법 </th>
+    <th> 의미 </th>
+  </tr>
+  <tr>
+    <td> and </td>
+    <td> a and b </td>
+    <td> a와 b가 모두 참이라면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> or </td>
+    <td> a or b </td>
+    <td> a와 b중 하나라도 참이라면 True, 아니면 False </td>
+  </tr>
+  <tr>
+    <td> not </td>
+    <td> not a </td>
+    <td> a가 참이라면 False로 a가 거짓이라면 True </td>
+  </tr>
+</table>
+
+```py
+a = 10
+b = 0
+print(f'{a} > 0 and {b} > 0 : {a > 0 and b > 0}')
+print(f'{a} > 0 or {b} > 0 : {a > 0 or b > 0}')
+print(f'not {a} : {not a}')
+print(f'not {b} : {not b}')
+```
+
+## 비트연산자
+- 비트 연산자는 어떤 변수의 값을 0과 1의 조합인 2진수, 즉 비트로 변환한 뒤에 비트 단위로 연산을 수행한다.
+
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용 방법 </th>
+    <th> 의미 </th>
+  </tr>
+  <tr>
+    <td> & </td>
+    <td> a & b </td>
+    <td> a와 b를 비트 AND처리 </td>
+  </tr>
+  <tr>
+    <td> | </td>
+    <td> a | b </td>
+    <td> a와 b를 비트 OR처리 </td>
+  </tr>
+  <tr>
+    <td> ^ </td>
+    <td> a ^ b </td>
+    <td> a와 b를 비트 XOR처리 </td>
+  </tr>
+  <tr>
+    <td> ~ </td>
+    <td> ~a </td>
+    <td> a를 비트 NOT 처리(보수연산) </td>
+  </tr>
+  
+  <tr>
+    <td> << </td>
+    <td> a << 2 </td>
+    <td> a를 비트로 변환하여 왼쪽으로 2비트 이동 </td>
+  </tr>
+  
+  <tr>
+    <td> >> </td>
+    <td> a >>2 </td>
+    <td> a를 비트로 변환하여 오른쪽으로 2비트 이동 </td>
+  </tr>
+</table>
+
+```py
+a = 10
+b = 70
+print(f'a & b : {a & b}')
+print(f'a | b : {a | b}')
+print(f'a ^ b : {a ^ b}')
+print(f'~ a : {~ a}')
+print(f'a << 1 : {a << 1}')
+print(f'a >> 1 : {a >> 1}')
+
+a = 0000 1010 (10)
+b = 0100 0110 (70)
+
+a & b = 0000 0010 (2)
+a | b = 0100 1110 (78)
+a ^ b = 0100 1100 (76)
+~a = 1111 0101(-11)
+a << 1 = 0001 0100 (20)
+a >> 1 = 0000 0101 (5)
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
