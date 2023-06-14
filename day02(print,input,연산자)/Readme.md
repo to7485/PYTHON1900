@@ -509,7 +509,25 @@ a << 1 = 0001 0100 (20)
 a >> 1 = 0000 0101 (5)
 ```
 
+## 시퀀스 연산자
+- 시퀀스 연산자는 순서가 있는 데이터 구조인 시퀀스(리스트,튜플,range,문자열)에서 사용할 수 있는 연산자
 
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용방법 </th>
+    <th> 의미 </th>
+    <th> 결과 </th>
+  </tr>
+  <tr>
+    <td rowspan="2"> + </td>
+    <td> [1,3,5] + [2,4,6] </td>
+    <td> 'hello' +' '+ 'python'</td>
+    <td rowspan="2"> 연결하기 </td>
+    <td> [1,2,3,4,5,6] </td>
+    <td> 'hello python'</td>
+  </tr>
+</table>
 
 
 
