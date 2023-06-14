@@ -522,16 +522,76 @@ a >> 1 = 0000 0101 (5)
   <tr>
     <td rowspan="2"> + </td>
     <td> [1,3,5] + [2,4,6] </td>
-    <td> 'hello' +' '+ 'python'</td>
     <td rowspan="2"> 연결하기 </td>
     <td> [1,2,3,4,5,6] </td>
-    <td> 'hello python'</td>
+  </tr>
+  <tr>
+    <td> 'hello' +' '+ 'python'</td>
+     <td> 'hello python'</td>
+  </tr>
+   <tr>
+    <td rowspan="2"> * </td>
+    <td> [1,3,5]*2 </td>
+    <td rowspan="2"> 반복하기 </td>
+    <td> [1,3,5,1,3,5] </td>
+  </tr>
+  <tr>
+    <td> '★'*5</td>
+     <td> '★★★★★'</td>
   </tr>
 </table>
 
+```py
+tree = '#'
+space = ' '
+print(space * 4 + tree * 1)
+print(space * 3 + tree * 3)
+print(space * 2 + tree * 5)
+print(space * 1 + tree * 7)
+print(space * 0 + tree * 9)
+```
 
+## 기타연산자
+### 멤버십 연산자
+- 특정 데이터가 컬렉션(리스트,문자열,딕셔너리 등)에 속해있는지 여부를 판단해주는 연산자
+- 속했으면 True, 아니면 False를 반환한다.
 
-
+<table style="border: 2px;">
+  <tr>
+    <th> 연산자 </th>
+    <th> 사용방법 </th>
+    <th> 의미 </th>
+    <th> 결과 </th>
+  </tr>
+  <tr>
+    <td rowspan="3"> in </td>
+    <td> 5 in [1,2,3,4,5] </td>
+    <td rowspan="3"> 포함되어있으면 True </td>
+    <td> True </td>
+  </tr>
+  <tr>
+    <td> 'h' in 'apple'</td>
+    <td> False</td>
+  </tr>
+  <tr>
+    <td> 'a' in {'a':'apple', 'b':'banana'}</td>
+    <td> True </td>
+  </tr>
+   <tr>
+    <td rowspan="3"> not in </td>
+     <td> 5 in [1,2,3,4,5] </td>
+    <td rowspan="3"> 포함되어있지 않으면 True </td>
+    <td> False </td>
+  </tr>
+  <tr>
+    <td> 'h' in 'apple'</td>
+    <td> True</td>
+  </tr>
+  <tr>
+    <td> 'a' in {'a':'apple', 'b':'banana'}</td>
+    <td> False </td>
+  </tr>
+</table>
 
 
 
