@@ -209,6 +209,9 @@ print(result)
 
 ```
 
+# 네이버 스포츠뉴스 크롤링하기
+- Requests 모듈과 BeautifulSoup를 활용해 네이버 스포츠뉴스 기사를 크롤링 해보자
+
 
 
 
