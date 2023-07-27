@@ -1,4 +1,4 @@
-#데이터의 분석
+# 데이터의 분석
 - 기업의 의사결정을 위해 빅데이터를 정리/변환/모델링의 과정을 거쳐 데이터를 분석하는 것을 의미합니다.
 - 일반적으로 <b>문제 정의 -> 데이터 수집 -> 데이터 전처리와 EDA -> 모델링 -> 의사결정</b>의 과정을 거칩니다.
 
@@ -46,10 +46,14 @@
 - 본격적인 데이터 분석에 앞서 데이터의 시각화를 통해 데이터에 대해 이해하는 과정을 의미합니다.
 - 의미없는 데이터를 학습시킨다면 정확하지 못한 결과가 나올 수 있습니다.
 - 데이터 시각화를 통해 데이터를 이해하고 올바른 학습을 하는 것이 중요합니다.
+
 ## matplotlib
 - 파이썬에서 가장 널리 사용되는 대표적인 시각화 라이브러리(모듈)입니다.
-  - figure : 이미지 전체의 영역을 확보
-    - figure() : 영역의 확보이므로 그래프에 아무것도 그려지지 않는다.
+  - figure : 이미지 전체의 영역을 확보(종이)
+  - ax(axes) : 그 공간중 내가 사용할 부분
+    - fig = figure() : ax 없는 빈 figure 생성 (후에 ax를 추가해줘야함)
+    - fig, ax = plt.subplots() : 하나의 ax 만을 가지는 하나의 figure 생성
+    - fig, axes = plt.subplots(2,2) : 4개(2*2)이 ax들을 가지는 하나의 figure 생성
    
 <img width="646" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/4d4d9915-9a42-46be-8f24-6145dca74c58">
 
@@ -66,12 +70,86 @@
     - legend('위치')
   - show() : 그래프를 화면에 나타내도록 하는 함수
 
+## seaborn
+- matplotlib 기반으로 만들어진 통계 데이터 시각화 라이브러리
+
+## pandas(Python Data Analysis Library)
+- R과 dataframe 데이터 타입을 참고하여 만든것이 pandas dataframe이다.
+- pandas는 dataframe을 주로 다루기 위한 라이브러리이며 dataframe을 자유롭게 가공할 수 있다.
+- Pandas Dataframe은 테이블 형식의 데이터를 다룰 때 사용한다.
+- pandas dataframe은 다양한 데이터 타입으로 부터 만들 수 있다.
+  - 딕셔너리
+  - dataframe
+  - list 등등
+### pandas dataframe의 3요소
+- column
+- row
+- index
+
+### DataFrame의 기본 형태
+```py
+import pandas as pd
+df = pd.DataFrame(data,index,columns,dtype,copy)
+```
+- data : DataFrame을 생성할 데이터
+- index : 각 Row에 대해 Label을 추가 ( 옵션 )
+- columns : 각 Column에 대해 Label을 추가 ( 옵션 )
+- dtype : 각 Column의 데이터 타입 명시 ( 옵션 )
+
+### Pands로 불러온 데이터 확인하기
+- df.head() : 상위 5개의 행 출력하기
+- df.shape : 데이터의 행,열 크기 확인하기
+- df.info() : 데이터에 대한 전반적인 정보.
+  - df를 구성하는 행과 열의 크기
+  - 컬럼명
+  - 컬럼을 구성하는 값의 자료형 등등
+- df.describe() : 컬럼별 요약 통계량을 나타낸다.
+- df.corr() : 누락값을 제외하고 전체 컬람들 간의 상관관계도를 계산한다.
+
+# Titanic Survival Prediction
+```py
+#matplotlib가 설치가 안되어 있는 경우
+#!pip install matplotlib
+
+#seaborn이 설치가 안되어있는 경우
+#!pip install seaborn
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#셀 아래에 그래프 출력하도록 지원
+%matplotlib inline
+
+import warnings
+warnings.filterwarnings('ignore') #경고 메세지 무시
+
+#데이터 불러오기
+df = pd.read_csv('./data/titanic.csv')
+
+#데이터 상위 5개 불러오기
+df.head()
+
+```
+
+<img width="643" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/df218fc1-a230-4de0-b5c3-074c59413fe5">
 
 
+```py
+#변수 정보 확인
+df.info()
+```
+- column : 총 12개의 컬럼이 존재
+- non-null count : null이 아닌 데이터의 개수
+- NaN : 어떠한 이유에서인지 관측이 불가능한 값
+- dtype : 데이터 타입 object는 문자열이라고 보면 된다.
 
+<img width="383" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/77759bb0-81bf-4795-91c1-2f5bcef79bf9">
 
+- 위와 같은 방식들로 데이터의 전반적인 형태를 둘러볼 수 있다.
 
-
+# Feature
+- Y라는 종속변수를 계산하기 위해 사용되는 input값 혹은 독립변수
 
 
 
