@@ -41,6 +41,133 @@
 - 교통사고 다발지역 예측
 - 서울시 지하철 혼잡도 분석을 통한 지하철 노선도 제안 등등
 
+# pandas(Python Data Analysis Library)
+- R과 dataframe 데이터 타입을 참고하여 만든것이 pandas dataframe이다.
+- pandas는 dataframe을 주로 다루기 위한 라이브러리이며 dataframe을 자유롭게 가공할 수 있다.
+- Pandas Dataframe은 테이블 형식의 데이터를 다룰 때 사용한다.
+- pandas dataframe은 다양한 데이터 타입으로 부터 만들 수 있다.
+  - 딕셔너리
+  - dataframe
+  - list 등등
+## pandas dataframe의 3요소
+- column
+- row
+- index
+
+## DataFrame의 기본 형태
+```py
+import pandas as pd
+df = pd.DataFrame(data,index,columns,dtype,copy)
+```
+- data : DataFrame을 생성할 데이터
+- index : 각 Row에 대해 Label을 추가 ( 옵션 )
+- columns : 각 Column에 대해 Label을 추가 ( 옵션 )
+- dtype : 각 Column의 데이터 타입 명시 ( 옵션 )
+
+## Pands로 불러온 데이터 확인하기
+- df.head() : 상위 5개의 행 출력하기
+- df.shape : 데이터의 행,열 크기 확인하기
+- df.info() : 데이터에 대한 전반적인 정보.
+  - df를 구성하는 행과 열의 크기
+  - 컬럼명
+  - 컬럼을 구성하는 값의 자료형 등등
+- df.describe() : 컬럼별 요약 통계량을 나타낸다.
+- df.corr() : 누락값을 제외하고 전체 컬람들 간의 상관관계도를 계산한다.
+
+## pandas 실습
+```py
+# pandas : 데이터 분석 라이브러리
+# 행(row) x 열(column) 형태의 데이터
+
+#주요 객체는
+#DataFrame, Series
+
+import numpy as np
+import pandas as pd
+
+##엑셀 읽기 & 저장하기
+df = pd.read_csv(‘./data/titanic.csv’)
+#df 판다스는 데이터를 dataframe 형태로 보여줄 수 있다.
+
+판다스의 여러가지 메서드를 알아보자
+df.head(10) #상위 10개만 뽑기
+
+df[‘Age’]
+print(type(da[‘Age’]))
+
+df[[‘Age’]]
+print(type(df[[‘Age’]]))
+
+#DataFrame[열 이름]은 Series, DataFrame[[열이름]]은 DataFrame
+
+#데이터프레임 : 행과 열로 이루어진 표를 의미합니다.
+#시리즈 : 데이터프레임의 하위 자료형으로 1개의 열이 시리즈이고 이 시리즈가 다수 모여 프레임을 형성한다.
+
+#df[‘Age’, ‘Pclass’] 불가능
+#df[[‘Age’, ‘Pclass’]] 가능
+
+df.tail(10) #아래서부터 10개
+
+df2 = pd.DataFrame(
+    [[1,2,3,4,],
+    [5,6,7,8,],
+    [9,10,11,12]], -> 개수가 안맞으면 출력했을 때 NaN 이라고 나옴
+    columns = ['국어','영어','수학','과학'],
+    index = ['안상현','전소정','정도건'],
+)
+df2
+
+컬럼 바꿔주기
+Df2.colums = [‘국어’,’영어’,’과학’,’수학’]
+
+#out이라는 폴더가 없으면 out폴더 만들기
+import os
+path = ‘out’
+if not os.path.exists(path):
+	os.mkdir(path)
+	print(path,’경로 생성’)
+else:
+	print(‘경로가 이미 있습니다.’)
+
+df2.to_excel(‘./out/score.xlsx’, encoding=’euc-kr’) -> 인코딩을 해줘야 깨지지 않는다.
+
+#불러오기
+df2 = pd.read_excel('./out/score.xlsx')
+df2
+
+# 첫번째 칼럼을 index로 사용하기
+df2 = pd.read_excel('./out/score.xlsx',index_col = 0)
+df2
+
+df2[['국어','영어','영어']]
+
+#인덱스 이름으로 접근
+
+#loc
+df2.loc[['안상현']]
+
+df2.loc['안상현']
+
+#결과
+국어    1
+영어    2
+과학    3
+수학    4
+Name: 안상현, dtype: int64
+
+Df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
+
+#iloc
+Df2.iloc[0]
+Df2.iloc[[0]]
+
+#loc는 조건을 걸 수도 있다.
+Df.loc[df[‘Age’] ==22.0]
+Df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
+
+Df.loc[df[‘Pclass’] <=2] [[‘Name’,’Pclass’]]
+```
+
 # EDA(Exploratory Data Analysis) 탐색적 데이터 분석
 ## EDA란?
 - 본격적인 데이터 분석에 앞서 데이터의 시각화를 통해 데이터에 대해 이해하는 과정을 의미합니다.
@@ -73,38 +200,6 @@
 ## seaborn
 - matplotlib 기반으로 만들어진 통계 데이터 시각화 라이브러리
 
-## pandas(Python Data Analysis Library)
-- R과 dataframe 데이터 타입을 참고하여 만든것이 pandas dataframe이다.
-- pandas는 dataframe을 주로 다루기 위한 라이브러리이며 dataframe을 자유롭게 가공할 수 있다.
-- Pandas Dataframe은 테이블 형식의 데이터를 다룰 때 사용한다.
-- pandas dataframe은 다양한 데이터 타입으로 부터 만들 수 있다.
-  - 딕셔너리
-  - dataframe
-  - list 등등
-### pandas dataframe의 3요소
-- column
-- row
-- index
-
-### DataFrame의 기본 형태
-```py
-import pandas as pd
-df = pd.DataFrame(data,index,columns,dtype,copy)
-```
-- data : DataFrame을 생성할 데이터
-- index : 각 Row에 대해 Label을 추가 ( 옵션 )
-- columns : 각 Column에 대해 Label을 추가 ( 옵션 )
-- dtype : 각 Column의 데이터 타입 명시 ( 옵션 )
-
-### Pands로 불러온 데이터 확인하기
-- df.head() : 상위 5개의 행 출력하기
-- df.shape : 데이터의 행,열 크기 확인하기
-- df.info() : 데이터에 대한 전반적인 정보.
-  - df를 구성하는 행과 열의 크기
-  - 컬럼명
-  - 컬럼을 구성하는 값의 자료형 등등
-- df.describe() : 컬럼별 요약 통계량을 나타낸다.
-- df.corr() : 누락값을 제외하고 전체 컬람들 간의 상관관계도를 계산한다.
 
 # Titanic Survival Prediction
 ```py
