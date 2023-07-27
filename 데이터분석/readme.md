@@ -116,8 +116,9 @@ df2 = pd.DataFrame(
     index = ['안상현','전소정','정도건'],
 )
 df2
-
-컬럼 바꿔주기
+```
+```py
+#컬럼 바꿔주기
 Df2.colums = [‘국어’,’영어’,’과학’,’수학’]
 
 #out이라는 폴더가 없으면 out폴더 만들기
@@ -134,11 +135,20 @@ df2.to_excel(‘./out/score.xlsx’, encoding=’euc-kr’) -> 인코딩을 해�
 #불러오기
 df2 = pd.read_excel('./out/score.xlsx')
 df2
+```
+<img width="272" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/a42da6b6-e969-4ee5-ab1d-2b4b65a456d2">
+
+```py
 
 # 첫번째 칼럼을 index로 사용하기
 df2 = pd.read_excel('./out/score.xlsx',index_col = 0)
 df2
+```
 
+
+
+
+```py
 df2[['국어','영어','영어']]
 
 #인덱스 이름으로 접근
