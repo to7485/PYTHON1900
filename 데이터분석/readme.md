@@ -144,9 +144,7 @@ df2
 df2 = pd.read_excel('./out/score.xlsx',index_col = 0)
 df2
 ```
-
-
-
+<img width="209" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/1d7a824b-e2d1-40cc-9df5-5cdb71d08536">
 
 ```py
 df2[['국어','영어','영어']]
