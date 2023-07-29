@@ -117,10 +117,16 @@ df2 = pd.DataFrame(
 )
 df2
 ```
+<img width="194" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/7dc80335-150a-4adc-b069-92f1e72e4803">
+
 ```py
 #컬럼 바꿔주기
 Df2.colums = [‘국어’,’영어’,’과학’,’수학’]
+```
 
+<img width="185" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/94c41409-d051-45bf-8f89-d33f66627e95">
+
+```py
 #out이라는 폴더가 없으면 out폴더 만들기
 import os
 path = ‘out’
@@ -150,31 +156,81 @@ df2
 df2[['국어','영어','영어']]
 
 #인덱스 이름으로 접근
+```
+<img width="161" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/5300fd23-06a3-4749-96c3-712351b256b3">
 
+### loc
+- location의 약어로 데이터 프레임의 행 또는 칼럼의 이름으로 인덱싱 하는 방법이다.
+- 사람이 읽을 수 있는 값으로 특정 값들을 골라오는 방법이다.
+
+### 사용방법
+1. df.loc[['행 이름1','행 이름2']] : 첨자 안에 행에 대한 검색 
+2. df.loc[['행 이름1','행 이름2']][['열 이름1','열 이름2']] : 행과 열에 대한 데이터 검색
+- 슬라이싱이 가능하다.
+3. df.loc[['행 이름1 : '행 이름4']]
+
+- loc 실습
+
+```py
 #loc
-df2.loc[['안상현']]
+df2.loc[['안상현']] dataframe
+```
 
-df2.loc['안상현']
+<img width="188" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8d5bed6d-d407-4dad-9d53-9682a7f393a6">
 
-#결과
-국어    1
-영어    2
-과학    3
-수학    4
-Name: 안상현, dtype: int64
+```py
+df2.loc['안상현'] series
 
-Df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
+```
 
-#iloc
-Df2.iloc[0]
-Df2.iloc[[0]]
+<img width="221" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8bbb1363-1447-432c-a48a-f581f90fb2a9">
 
+```py
+df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
+```
+
+<img width="119" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/febf57ae-8110-42fd-b435-6ac574dbd5b1">
+
+```py
 #loc는 조건을 걸 수도 있다.
 Df.loc[df[‘Age’] ==22.0]
-Df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
+```
 
+<img width="617" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/49a8b436-3adc-4e21-81bf-9fdf3aae2ab2">
+
+```py
+Df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
+```
+
+<img width="370" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/60099425-5a68-4ad8-8331-f18b98f690d3">
+
+
+```py
 Df.loc[df[‘Pclass’] <=2] [[‘Name’,’Pclass’]]
 ```
+
+### iloc
+- Integer Location의 약자이다.
+- 데이터 프레임 행/열의 순서를 나타내는 정수를 통해 가져오는 방법이다.
+- loc가 행/열의 이름을 사용한다면 iloc는 행/열의 순번을 사용한다.
+
+1. 데이터프레임.iloc[행 인덱스 번호, 열 인덱스 번호]
+2. 데이터프레임.iloc[[행 인덱스 번호, 열 인덱스 번호]]
+
+- 슬라이싱이 가능하다.
+    - 데이터프레임.iloc[:인덱스번호,:인덱스번호]
+
+```py
+Df2.iloc[0]
+```
+<img width="215" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/ddaead45-4171-4bc2-8098-8cc5639c1766">
+
+```py
+Df2.iloc[[0]]
+```
+<img width="181" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/fc3a8882-563a-4635-8209-590a24366571">
+
+
 
 # EDA(Exploratory Data Analysis) 탐색적 데이터 분석
 ## EDA란?
