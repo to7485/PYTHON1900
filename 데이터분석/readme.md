@@ -390,17 +390,69 @@ plt.show()
 <img width="450" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/10974874-4e63-4f81-94da-51620b1ed0b9">
 
 ## 상관계를 통해 도출한 내용
-- Fare와 Pclass는 음의 상관관계를 가지고 있다.(-0.55) Pclass 1이 2,3보다 높은 등급이기에 가격이 더 비싼 것으로 추측할 수 있다.
-- Survived와 Pclass는 음의 상관관계를 가지고 있다.(-0.34) -> 체크 말로 표현하기 힘든 것은 그래프를 통해서 보면서 설명하는게 좋다.
-- Age와 Pclass 음의 상관 관계를 가지고 있다 . 나이가 많을수록 높은 등급의 클래스를 가질 확률이 높다.
-- Pclass는 Survived는 음의 상관 관계가있고 Age와 Plcass가 음의 상관 관계를 갖고 있는데 Age는 Survived와 상관관계가 없다 -> 체크 뭔가 이상하다.
-- SipSp는 Parch는 양의상관 관계를 가지고 있다. 가족이 탑승한 경우에는 SipSp(형제자매, 배우자) Parch( 부모,자식)이 함께 탑승했기에 그랬을 것이라 추측할 수있다.
+- Fare와 Pclass는 음의 상관관계를 가지고 있다.(-0.55)
+	- Pclass 1이 2,3보다 높은 등급이기에 가격이 더 비싼 것으로 추측할 수 있다.
+- Survived와 Pclass는 음의 상관관계를 가지고 있다.(-0.34)
+	- 체크 말로 표현하기 힘든 것은 그래프를 통해서 보면서 설명하는게 좋다.
+- Age와 Pclass 음의 상관 관계를 가지고 있다.
+	- 나이가 많을수록 높은 등급의 클래스를 가질 확률이 높다.
+- Pclass는 Survived는 음의 상관 관계가있고, Age와 Plcass가 음의 상관 관계를 갖고 있는데 Age는 Survived와 상관관계가 없다 -> 체크 뭔가 이상하다.
+- SipSp는 Parch는 양의상관 관계를 가지고 있다.
+	- 가족이 탑승한 경우에는 SipSp(형제자매, 배우자) Parch( 부모,자식)이 함께 탑승했기에 그랬을 것이라 추측할 수있다.
 - Fare와 Survived, Parch와 Fare에는 약한 양의 상관관계가 있다.
 
 - 상관관계표를 보고 도출한 내용을 보고 체크를 해봐야 한다.
 - 논리적으로 생각을 할 수 있어야 한다.
 - 범주형 변수랑 같이 상관관계를 찾아보려고 할 때도 그래프를 그려봐야 한다.
 
+## 1. Sex와 Survived의 그래프
+```py
+fig, ax = plt.subplots(2, figsize=(18,15)) # 서브플롯을 2개, 크기는 18,15로 만들어라
+sns.countplot(x='Sex', data=df, ax = ax[0]) #countplot -> 막대그래프
+#df라는 데이터를 가지고 성별이라는 컬럼을 가지고 count를 확인해줘라. 0번째에 그려줘라
+
+sns.countplot(x='Sex', data=df, ax=ax[1], hue = 'Survived')
+#hue : 범례를 추가해준다.
+plt.show()
+```
+
+<img width="978" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/4627cae6-b276-4c81-8323-bcd0a59fc10b">
+
+<img width="979" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/4498b9be-9b20-4a72-97ad-dc4674b134ad">
+
+- 주황색이 생존 파란색이 사망
+- 왼쪽이 남자 오른쪽이 여자
+- 남자는 600명중에 100명 생존
+- 여자는 300명중에 100명 생존
+
+- 성별이 생존과 영향이 있구나?
+- 레이디 퍼스트 문화 때문!
+
+- 실제로 그래프에서 막대가 무슨 의미를 지니고 있는지 혹은 라벨이 크기가 작아서 잘 안보이니까 더 꾸며주기 위한 옵션을 주자
+
+```py
+fig, ax = plt.subplots(2, figsize=(18,15))
+sns.countplot(x='Sex', data=df, ax = ax[0])
+#제목 작성 및 라벨 크기 키우기
+ax[0].set_title('Sex Count Plot', size = 20) #-> 위에 제목
+ax[0].set_xlabel('Sex', size = 15) #-> x축 제목
+ax[0].set_ylabel('Count', size = 15) #-> y축 제목
+ax[0].tick_params(labelsize = 15) #-> 눈금에 있는 숫자
+
+sns.countplot(x='Sex', data=df, ax=ax[1], hue = 'Survived')
+#제목 작성 및 라벨 크기 키우기
+ax[1].set_title('Sex Count Plot', size = 20)
+ax[1].set_xlabel('Sex', size = 15)
+ax[1].set_ylabel('Count', size = 15)
+ax[1].tick_params(labelsize = 15)
+ax[1].legend(['Not Survived','Survived'], loc = 'upper right', prop = {'size' : 15}) #-> 범례에 이름을 붙힘,위치, 크기 설정
+plt.show()
+```
+
+<img width="977" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/c002d411-6fce-4cb9-a247-2102ea824cff">
+
+
+<img width="979" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f6412d61-9f03-489e-b038-4465ef47ce67">
 
 
 
