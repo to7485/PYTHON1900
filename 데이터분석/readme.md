@@ -191,23 +191,42 @@ df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
 
 <img width="119" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/febf57ae-8110-42fd-b435-6ac574dbd5b1">
 
+### loc는 조건을 줄 수 있다.
+- 데이터프레임객체.loc[조건 비교할 컬럼과 조건]으로 데이터를 검색
+
+
 ```py
-#loc는 조건을 걸 수도 있다.
-Df.loc[df[‘Age’] ==22.0]
+# 나이가 22살인 모든 데이터 검색
+Df.loc[df[‘Age’] ==22.0] 
 ```
 
 <img width="617" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/49a8b436-3adc-4e21-81bf-9fdf3aae2ab2">
 
 ```py
+# 성별이 남자인 사람의 이름, 생존여부, 좌석등급, 나이 데이터 검색
 Df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
 ```
 
 <img width="370" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/60099425-5a68-4ad8-8331-f18b98f690d3">
 
-
 ```py
 Df.loc[df[‘Pclass’] <=2] [[‘Name’,’Pclass’]]
 ```
+
+<img width="387" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/dee2f6fa-afbb-4b83-ab15-987d4fc27200">
+
+- 한번에 조건을 여러개 검색할 수 있다.
+```py
+# 조건1 정의
+condition1 = (df['fare'] > 30)
+
+# 조건2 정의
+condition2 = (df['who'] == 'woman')
+
+df.loc[condition1 & condition2]
+```
+
+<img width="600" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/925dbe77-43fb-45bb-99f3-413104129354">
 
 ### iloc
 - Integer Location의 약자이다.
