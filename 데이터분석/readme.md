@@ -197,20 +197,20 @@ df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
 
 ```py
 # 나이가 22살인 모든 데이터 검색
-Df.loc[df[‘Age’] ==22.0] 
+df.loc[df[‘Age’] ==22.0] 
 ```
 
 <img width="617" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/49a8b436-3adc-4e21-81bf-9fdf3aae2ab2">
 
 ```py
 # 성별이 남자인 사람의 이름, 생존여부, 좌석등급, 나이 데이터 검색
-Df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
+df.loc[df[‘Sex’] == ‘male’][[‘Name’,’Survived’,’Pclass’,’Age’]]
 ```
 
 <img width="370" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/60099425-5a68-4ad8-8331-f18b98f690d3">
 
 ```py
-Df.loc[df[‘Pclass’] <=2] [[‘Name’,’Pclass’]]
+df.loc[df[‘Pclass’] <=2] [[‘Name’,’Pclass’]]
 ```
 
 <img width="387" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/dee2f6fa-afbb-4b83-ab15-987d4fc27200">
@@ -240,16 +240,14 @@ df.loc[condition1 & condition2]
     - 데이터프레임.iloc[:인덱스번호,:인덱스번호]
 
 ```py
-Df2.iloc[0]
+df2.iloc[0]
 ```
 <img width="215" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/ddaead45-4171-4bc2-8098-8cc5639c1766">
 
 ```py
-Df2.iloc[[0]]
+df2.iloc[[0]]
 ```
 <img width="181" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/fc3a8882-563a-4635-8209-590a24366571">
-
-
 
 # EDA(Exploratory Data Analysis) 탐색적 데이터 분석
 ## EDA란?
@@ -269,6 +267,7 @@ Df2.iloc[[0]]
 
   - plot : 그래프를 그리는 함수
     - plot()
+      - 인자로 들어갈 수 있는 것
       - figsize : (width, height)의 튜플을 전달한다. 단위는 인치이다.
       - dpi : 1인치당의 도트 수
       - facecolor : 배경색
