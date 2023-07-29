@@ -194,7 +194,6 @@ df2.loc[[‘홍길동’,’이순신’]][[‘국어’,’영어’]]
 ### loc는 조건을 줄 수 있다.
 - 데이터프레임객체.loc[조건 비교할 컬럼과 조건]으로 데이터를 검색
 
-
 ```py
 # 나이가 22살인 모든 데이터 검색
 df.loc[df[‘Age’] ==22.0] 
@@ -302,7 +301,7 @@ import warnings
 warnings.filterwarnings('ignore') #경고 메세지 무시
 
 #데이터 불러오기
-df = pd.read_csv('./data/titanic.csv')
+df = pd.read_csv('data/titanic.csv')
 
 #데이터 상위 5개 불러오기
 df.head()
@@ -326,7 +325,64 @@ df.info()
 - 위와 같은 방식들로 데이터의 전반적인 형태를 둘러볼 수 있다.
 
 # Feature
+- 데이터의 전반적인 형태
 - Y라는 종속변수를 계산하기 위해 사용되는 input값 혹은 독립변수
+
+## Input Feature : 데이터 분석을 할 때 들어가는 요소로 분석
+- 범주형 변수 : Name, Sex, Ticket, Cabin, Embarked
+- 순서가 있는 변수 : Pclass (좌석 등급 1,2,3이 그냥 숫자가 아니라 순서가 있는 것이다.)
+- 정수형 변수 : PassengerId, Age, SipSp, Parch, Fare (숫자 형태이다.)
+
+## Target Feature(데이터 분석의 목적)
+- 타이타닉 탑승객들에 대한 생존여부를 아는게 목적이다.
+- Survived
+
+## 상관관계 표
+```py
+df.corr(numeric_only=True) #correlation
+```
+
+ <img width="581" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/acd94c5b-b5b9-45d0-a6ee-430ce1f8a16a">
+
+- 변수 간 관계의 정도(0~1)와 방향(+,-)을 하나의 수치로 요약해주는 지수
+- -1 ~ 1사이의 값을 가진다.
+- +이면 양의 상관관계이며 한 변수가 증가하면 다른 변수도 증가한다.
+- -이면 음의 상관관계이며 하 변수가 증가할 때 다른 변수는 감소한다.
+    - 0.0 ~ 0.2 : 상관관계가 거의 없다.
+    - 0.2 ~ 0.4 : 약한 상관관계가 있다.
+    - 0.4 ~ 0.6 : 상관관계가 있다.
+    - 0.6 ~ 0.8 : 강한 상관관계가 있다.
+    - 0.8 ~ 1.0 : 매우 강한 상관관계가 있다.
+ 
+- 범주형 변수는 상관관계표에 등장하지 않는다.
+- 상관관계라는건 통계로 표현이 되기 때문에 무언가를 판단할 수 있어야 한다.
+- 숫자가 아닌것은 구분할 수 없기 때문에 표로 나타나지 않는다.
+- 범주형 변수에는 라벨을 붙혀서(예를 들어 남자면 1, 여자는 0)상관관계를 나타낼 수 도 있다.
+
+- 표로는 한눈에 보기 힘들기 때문에 그래포 표현할 수 있다.
+
+## 상관관계 그래프
+### HeatMap이란?
+- HeatMap은 열을 의미하는 Heat와 지도를 뜻하는 map을 합친 단어이다.
+- Data들의 Array을 색상으로 표현해주는 Graph이다.
+### 왜 HeatMap을 사용하는가
+- HeatMap을 사용하면 두 개의 카테고리 값에 대한 값 변화를 한눈에 알기 쉽다.
+- 대용량 데이터도 HeatMap을 이용해서 시각화 한다면 이미지 몇장으로 표현이 가능하다.
+- sns.heatmap (df,vmin,vmax,cbar,center,linewidths,annot, fmt, cmap)
+	- vmin : 최소값
+   	- vmax : 최대값
+   	- cbar : colorbar의 유무
+   	- linewidths : cell사이에 선의 굵기 ex) 0.4
+   	- linecolor : 선의 색깔 ex) 'white'
+   	- annot : 각 cell의 값 표기 유무 ex) True
+   	- fmt : 그 값의 데이터 타입 설정 ex) 'd', '.lf'
+   	- cmap : 히트맵의 색을 결정한다.
+```py
+sns.heatmap(df.corr(numeric_only=True), annot = True, cmap = 'RdYlGn', linewidth = 0.2)
+```
+
+<img width="450" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/10974874-4e63-4f81-94da-51620b1ed0b9">
+
 
 
 
