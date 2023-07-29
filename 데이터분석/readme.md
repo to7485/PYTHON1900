@@ -379,11 +379,27 @@ df.corr(numeric_only=True) #correlation
    	- cmap : 히트맵의 색을 결정한다.
 ```py
 sns.heatmap(df.corr(numeric_only=True), annot = True, cmap = 'RdYlGn', linewidth = 0.2)
+fig = plt.gcf()
+fig.set_size_inches(10,8)
+plt.show()
 ```
+- plt.gcf() : gcf는 get current figure의 약자로 현재 figure를 확인할 수 있다.
+- fig.set_size_inches() : 크기지정
+- plt.show() : 화면에 표시하는 기능
 
 <img width="450" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/10974874-4e63-4f81-94da-51620b1ed0b9">
 
+## 상관계를 통해 도출한 내용
+- Fare와 Pclass는 음의 상관관계를 가지고 있다.(-0.55) Pclass 1이 2,3보다 높은 등급이기에 가격이 더 비싼 것으로 추측할 수 있다.
+- Survived와 Pclass는 음의 상관관계를 가지고 있다.(-0.34) -> 체크 말로 표현하기 힘든 것은 그래프를 통해서 보면서 설명하는게 좋다.
+- Age와 Pclass 음의 상관 관계를 가지고 있다 . 나이가 많을수록 높은 등급의 클래스를 가질 확률이 높다.
+- Pclass는 Survived는 음의 상관 관계가있고 Age와 Plcass가 음의 상관 관계를 갖고 있는데 Age는 Survived와 상관관계가 없다 -> 체크 뭔가 이상하다.
+- SipSp는 Parch는 양의상관 관계를 가지고 있다. 가족이 탑승한 경우에는 SipSp(형제자매, 배우자) Parch( 부모,자식)이 함께 탑승했기에 그랬을 것이라 추측할 수있다.
+- Fare와 Survived, Parch와 Fare에는 약한 양의 상관관계가 있다.
 
+- 상관관계표를 보고 도출한 내용을 보고 체크를 해봐야 한다.
+- 논리적으로 생각을 할 수 있어야 한다.
+- 범주형 변수랑 같이 상관관계를 찾아보려고 할 때도 그래프를 그려봐야 한다.
 
 
 
