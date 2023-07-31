@@ -540,13 +540,13 @@ count_subplots(df,'Embarked')
 - 이제 2개 이상의 Feature을 가지고 비교할 수 있는 함수가 필요하다.
 ```py
 def factor_plots(data, feature1, feature2=None, col = None, hue = None, kind = 'point'):
-    g = sns.catplot(data=data, x=feature1,y=feature2, col = col, hue = hue, kind = 'count')
+    g = sns.catplot(data=data, x=feature1,y=feature2, col = col, hue = hue, kind = kind)
     #factorplot : 여러가지 형태의 그래프를 그릴수 있다. kind를 여러가지로 설정해줄 수 있다. point, count, bar, viloine
     fig = plt.gcf()
     fig.set_size_inches(15, 4)
     plt.show()
     
-factor_plots(df, 'Embarked', hue = 'Survived', col = 'Pclass')
+factor_plots(df, 'Embarked', hue = 'Survived', col = 'Pclass', kind='count')
 ```
 
 <img width="977" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/6bc569c2-813a-42fc-b107-ccb337ad6283">
@@ -556,5 +556,39 @@ factor_plots(df, 'Embarked', hue = 'Survived', col = 'Pclass')
 - 이렇게 도시의 소득격차를 유추해볼 수 있다.
 
 ## 7. Pclass와 Survived, Sex의 그래프
+```py
+factor_plots(df, 'Pclass','Survived' , kind = 'point', hue = 'Sex', col = 'Embarked')
+```
+
+<img width="978" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/9ff17369-6264-4dc0-bdec-7d0d35a59b31">
+
+- 1등석에 머문 경우 생존률은 높지만 Q에 탑승한 남성의 경우 대부분 생존률이 좋지 않다.
+- 또한 남성과 여성우 생존률의 차이도 확인할 수 있다.
+
+## 8. Age, Sex, Survived의 그래프
+```py
+factor_plots(df,'Survived','Age', hue='Sex', kind='violin')
+```
+
+<img width="974" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/b5fc455e-8913-4ff4-a32d-8929cf0367ac">
+
+- 생존하지 못한 사람들중 남자들의 나이대가 얼마나 되는지 두꺼울수록 양이 많다.
+- 20대부터 30대 중반정도는 많이 살아남지 못한걸 알 수 있다.
+- 생존한 사람들의 나이대를 확인해보니까 어린아이들 이라는걸 알 수 있다.
+
+### 나이와 생존관계는 상관관계가 있는건가???
+- 나이가 어린경우 양의 상관관계를 가지고 있다. -> 나이가 어릴수록 생존할 확률이 높다.
+- 하지만 나이가 어느정도 많아지게 되면 생존률이 낮아진다 -> 상관관계가 일정하지 않기 때문에 관계가 없다고 분석할 수 있다.
+
+## 9. Fare와 Pclass, Survived의 그래프
+```py
+factor_plots(df, 'Pclass','Fare', hue = 'Survived',kind='bar')
+```
+
+<img width="975" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/bc4fba0f-4df8-4a44-b49e-b3c9659fca4f">
+
+- Fare가 비쌀수록 높은 좌석 등급에 앉는다는 것과 더 높은 비용을 지불한 사람들의 생존률이 더 높다는것을 확인할 수 있다.
+
+
 
 
