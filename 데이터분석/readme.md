@@ -454,8 +454,8 @@ plt.show()
 
 <img width="979" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f6412d61-9f03-489e-b038-4465ef47ce67">
 
-## 함수로 그래프 작성하기
-## 반복적인 작업을 할 때 모든 코드를 작성하는 것 보다 함수로 작성하는것이 좋다.
+### 함수로 그래프 작성하기
+- 반복적인 작업을 할 때 모든 코드를 작성하는 것 보다 함수로 작성하는것이 좋다.
 - feature를 바꿔주면 그 내가 매개변수로 보내는 feature에 맞춰서 그래프를 그려주는 함수릉 만들어 보았다.
 ```py
 def count_subplots(data, feature1, hue='Survived'):
@@ -483,8 +483,78 @@ count_subplots(df,'Sex')
 - 그래프를 보며 다음과 같은 결론을 낼 수 있다.
 - 남자 인원수가 훨씬 높믕메도 남자의 생존률은 매우 낮다. 여자는 대부분이 생존했다.
 
+## Pclass와 Survived의 그래프
+```py
+count_subplots(df,'Pclass')
+```
+
+<img width="655" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/79d3b33d-49e6-4d4b-915c-283576831ddb">
+
+- 3등석에 앉아있던 사람들이 제일 많았던걸 확인할 수 있다.
+- 1등급석에 머문 탑승객은 대부분 살아남았고, 2등급석은 절반가량 3등급석은 대부분 살아남지 못했다.
+
+## 3. SibSp와 Survived의 그래프
+```py
+count_subplots(df,'SibSp')
+```
+<img width="631" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/c84d211e-9f38-4793-a31b-52d809accc17">
+
+- 혼자 탑승을 한 경우가 대부분인 것 같다.
+- 배우자,형제,자메 들과 탑승한 경우도 있고 대가족이 탑승한 경우도 있다.
+
+- 혼자온 경우 1/3정도가 살아남았다. 1명과 같인 경우 생존을 한 사람이 더 많았다.
+- 나이가 들어서 형제,자매보다 배우자와 여행을 가는 경우가 더 많다.
+- 결혼은 일반적으로 남자와 여가자 하고, 여성이 생존률이 더 높기 때문에 두명이 온 경우 생존을 더 많이 한것 처럼 보이는게 아닐까?
+
+## 4. Parch와 Survived의 그래프
+```py
+count_subplots(df,'Parch')
+```
+
+<img width="648" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/306f4990-83d6-43ee-838b-0b9bc277d395">
+
+- SibSp와 Parch의 그래프가 비슷하고 1이상인 경우 생존률이 높다는 것을 확인할 수 있다. 즉, 가족 단위로 타이타닉에 탑승한 경우 생존률이 더 높다는 것을 확인할 수 있다.
 
 
+## 5. Embarked와 Survived의 그래프
+```py
+count_subplots(df,'Embarked')
+```
 
+<img width="771" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/e69db3dd-df5f-4b27-b04f-82f8f26b074d">
+
+- S : SouthHampton
+- C : Cherbourg 셰르부그
+- Q : Queens
+
+- Embarked를 보았을 때 Cherbourg에서 탑승한 경우 생존률이 더 높다는 것을 확인할 수 있다.
+
+### why?
+- S에서 탑승한 사람이 제일 많다. S에서 탑승한 사람들 중 200명 가량 생존을 하고 나머지는 죽었다.
+- C에서 탑승한 사람은 죽은 사람보다 생존한 사람이 많다.
+
+### 추측
+- 도시마다 소득격차가 존재하지 않을까? -> C에서 탑승한 사람들이 1등급석 자리를 가진 비율이 많지 않을까?
+
+## 6. Embarked와 Survived,Pclass의 그래프
+- 이제 2개 이상의 Feature을 가지고 비교할 수 있는 함수가 필요하다.
+```py
+def factor_plots(data, feature1, feature2=None, col = None, hue = None, kind = 'point'):
+    g = sns.catplot(data=data, x=feature1,y=feature2, col = col, hue = hue, kind = 'count')
+    #factorplot : 여러가지 형태의 그래프를 그릴수 있다. kind를 여러가지로 설정해줄 수 있다. point, count, bar, viloine
+    fig = plt.gcf()
+    fig.set_size_inches(15, 4)
+    plt.show()
+    
+factor_plots(df, 'Embarked', hue = 'Survived', col = 'Pclass')
+```
+
+<img width="977" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/6bc569c2-813a-42fc-b107-ccb337ad6283">
+
+- 각각의 탑승한 곳에서 죄석 등급에 앉은 비율
+- 전체에서 C에 탑슨한 사람이 많지 않은데, 1등급석 자리를 갖고 있는 사람이 많다.
+- 이렇게 도시의 소득격차를 유추해볼 수 있다.
+
+## 7. Pclass와 Survived, Sex의 그래프
 
 
