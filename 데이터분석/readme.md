@@ -454,6 +454,35 @@ plt.show()
 
 <img width="979" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f6412d61-9f03-489e-b038-4465ef47ce67">
 
+## 함수로 그래프 작성하기
+## 반복적인 작업을 할 때 모든 코드를 작성하는 것 보다 함수로 작성하는것이 좋다.
+- feature를 바꿔주면 그 내가 매개변수로 보내는 feature에 맞춰서 그래프를 그려주는 함수릉 만들어 보았다.
+```py
+def count_subplots(data, feature1, hue='Survived'):
+    f, ax = plt.subplots(2, figsize=(18,15))
+    sns.countplot(x=feature1, data = data, ax = ax[0])
+    ax[0].set_title(f'{feature1} Count Plot', size = 20)
+    ax[0].set_xlabel(f'{feature1}', size = 15)
+    ax[0].set_ylabel('Count', size = 15)
+    ax[0].tick_params(labelsize = 15)
+
+    sns.countplot(x=feature1, data=df, ax=ax[1], hue = 'Survived')
+    #제목 작성 및 라벨 크기 키우기
+    ax[1].set_title(f'{feature1} Count Plot', size = 20)
+    ax[1].set_xlabel(f'{feature1}', size = 15)
+    ax[1].set_ylabel('Count', size = 15)
+    ax[1].tick_params(labelsize = 15)
+    if hue == 'Survived':
+        ax[1].legend(['Not Survived','Survived'], loc = 'upper right', prop = {'size' : 15})
+    plt.show()
+```
+- 성별로 count를 해주는 그래프를 다시 작성해보자.
+```py
+count_subplots(df,'Sex')
+```
+- 그래프를 보며 다음과 같은 결론을 낼 수 있다.
+- 남자 인원수가 훨씬 높믕메도 남자의 생존률은 매우 낮다. 여자는 대부분이 생존했다.
+
 
 
 
