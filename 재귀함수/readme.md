@@ -28,12 +28,45 @@ recursive(1)
 def recursive(n):
    if n == 3:
        return
-   print(n, end=’ ‘)
+   print(n, end=' ') # 호출이 이루어지기 전에 실행
    revursive(n+1) # 함수 안에서 자기 자신을 호출
-   print(‘함수 끝’)
-   return None;
+   print('함수 끝') # 모든 호출이 끝나고 return되면서 돌아오면서 수행되는 구문
+
+recursive(1)
 ```
-recursive(1) -> 1 출력 recursive(2) 호출 -> 1 2 출력 recursive(3)-> 1 2 함수끝
+recursive(1) -> 1 recursive(2) 호출 -> 1 2 recursive(3)-> 1 2 -> 1 2 함수끝 줄바뀌고 함수끝 호출
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/3ecaeb41-9384-4fb2-a709-1f4ab50ecb1c)
+
+
+### 팩토리얼
+```py
+def f(x):
+    if(x == 0):
+        return 1
+    return x*f(x-1)
+
+for i in range(1,6):
+    print(f(i),end=' ')
+```
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/61f92d53-f00b-452a-8381-b7be43245a01)
+
+
+### 피보나치 수열
+```py
+def f2(x):
+    if(x == 0):
+        return 0
+    if(x == 1):
+        return 1
+    return f2(x-1) + f2(x-2)
+
+for i in range(6):
+    print(f2(i),end=' ')
+```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/8036a3e7-0a43-44fe-92c6-4ee703468ae9)
+
 
 
 
