@@ -38,6 +38,13 @@ recursive(1) -> 1 recursive(2) 호출 -> 1 2 recursive(3)-> 1 2 -> 1 2 함수끝
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/3ecaeb41-9384-4fb2-a709-1f4ab50ecb1c)
 
+### 재귀함수의 원리
+- 우선 함수의 선언과 호출에 대해서 다시 이해해야 한다.
+- 함수는 호출이 되면 명령을 수행하고 다시 호출한곳으로 돌아간다.
+- 함수는 호출될 때마다 스택 영역에 쌓인다.
+- 모든 호출이 끝나고 마지막 명령부터 다시 돌아온다.
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/02cb8759-4a08-4e6f-9515-c481ca9aaf6e)
 
 ### 팩토리얼
 ```py
