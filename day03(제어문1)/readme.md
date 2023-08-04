@@ -73,7 +73,7 @@ important = 84
 if important >=100:
     print('상')
 else:
-    important >= 50:
+    if important >= 50:
         print('중')
     else:
         print('하')
