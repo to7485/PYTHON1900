@@ -50,7 +50,7 @@ for I in range(5) :
 ## O(1) : 일정한 복잡도(constant complexity)
 - 일정한 복잡도(constant complexity)라고 하며, 입력값이 증가하더라도 시간이 늘어나지 않는다.
 - 입력값의 크기와 관계없이, 즉시 출력값을 얻어낼 수 있다는 의미이다.
-- 파이썬의 경우 index, 인덱싱, length, append, pop, clear
+- 배열의 n번째 원소에 접근, 스택에 push/pop, 큐에 삽입/삭제, 해시 테이블의 원소에 접근
 ```py
 def func0(n):
 	return n
