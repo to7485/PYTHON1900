@@ -50,17 +50,15 @@
 - 서비스를 기다리는 사람의 리스트, 선물 받고 싶은 목록 등 리스트는 정말 다양합니다.
 - 파이썬은 리스트를 기본 자료구조로 제공해 많은 작업들을 지원하고 있습니다.
 
-<img width="465" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f0dd57f5-4e3f-4994-b86f-394642bd427d">
-
 ## 리스트의 구현방법
 1. 연결리스트(Linked List)
 2. 배열 리스트(Array List)
 
-## 배열리스트(파이썬 기본제공)
+### 배열리스트(파이썬 기본제공)
 - 파이썬에서는 기본적으로 리스트 자료구조를 제공합니다.
 - 우리는 그 내부가 어떻게 돌아가는지 알 필요 없이 사용법만 알고 사용하면 됩니다.
 
-## 기본적으로 제공하는 기능
+### 기본적으로 제공하는 기능
 - insert(i,x) : x를 리스트의 i번째 원소로 삽입한다.
 - append(x) : x를 리스트의 맨 뒤에 추가한다.
 - pop(i) : 리스트의 i번 원수롤 삭제하고 삭제한 값을 반환한다.
@@ -73,7 +71,7 @@
 - reverse() : 리스트의 순서를 역수능로 뒤집는다.
 - sort() : 리스트의 원소를 정렬한다.
 
-## 리스트의 작업
+### 리스트의 작업
 ```py
 li = []
 li.insert(0,'test')
@@ -92,7 +90,7 @@ print(li)
 
 <img width="282" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/61ae2d1a-3801-4483-b95c-ec4f54eb8c65">
 
-## 파이썬 내장 리스트의 한계
+### 파이썬 내장 리스트의 한계
 - 파이썬 리스트는 배열로 구현이 되어있습니다.
 - 우선 원소 삽입 시에 삽입하는 자리 오른쪽부터 끝까지 모든 원소를 한칸씩 시프트 해주는 부담이 있습니다.
 
@@ -111,9 +109,214 @@ print(li)
 
 <img width="374" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8cddd334-a9c7-4b74-8fe9-bc78eaa91801">
 
+## 연결리스트(Linked List)
+- 리스트의 하부 구조로 배열을 사용할 경우 공간을 미리 확보해두고 시작해야 합니다.
+- 리스트에 원소가 궁극적으로 얼마나 들어올지는 예상하기 쉽지 않으므로 많은 적든 공간 낭비가 불가피합니다.
+- 공간을 낭비하지않으려면 배열의 크기를 빠듯하게 잡아놓아야 하는데 이 경우 다 차면 더 큰 배열을 할당받아 원소를 모두 옮겨주는 작업을 자주해야 함으로 상당히 번거롭습니다.
+- 연결리스트는 배열의 공간 낭비를 피할 수 있는 자료구조입니다.
+- 원소가 추가될 때마다 공간을 할당받아 추가하는 동적 할당 방식을 따르기 때문입니다.
 
+## Node
+- Node란 어떤 정보를 담고있는 하나의 단위로, 자료구조에서 개별적인 정보를 나타낼 때 사용하는 단위입니다.
+- 노드는 정수나 실수 혹은 복잡한 객체가 들어갈 수 있는 item 필드
+- 다음 노드를 가리키는 next필드가 존재합니다.
 
+<img width="171" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/56f65e36-682c-45f5-a738-284dc833b397">
 
+## 연결리스트의 작업
+- 연결리스트의 작업들을 핵심 중심으로 소개하겠습니다.
+
+## 노드의 생성
+```py
+#노드의 생성
+class ListNode:
+    def __init__(self, newItem, nextNode):
+        self.item = newItem
+        self.next = nextNode
+```
+
+## 리스트의 구현
+```py
+#리스트의 구현
+class LinkedListBasic:
+    def __init__(self):
+        self.__head = ListNode('dummy',None)
+        self.__numItems = 0
+```
+
+## 원소의 삽입
+- 리스트 구현 클래스에 밑에 이어서 작성합니다.
+- 연결리스트에서 중간에 노드를 삽입하려면 삽입 노드 바로 앞에 있는 녿, 즉 직전 노드를 가리키는 레퍼런스 prev가 있어야 합니다.
+```py
+    #원소 삽입
+    def insert(self, i, newItem):
+        if i >= 0 and i <= self.__numItems:
+            prev = self.__getNode(i-1) # __getNode(i-1) : 삽입할 노드의 직전 노드
+            newNode = ListNode(newItem,prev.next)
+            prev.next = newNode #prev.next-> 다음 노드를 가리킨다.
+            self.__numItems +=1
+        else:
+            print("index",i,":out of bound in insert()")
+
+```
+
+## i번째 노드 찾기
+```py
+    #i번째 노드 찾기
+    def __getNode(self, i)->ListNode: # -> ListNode : 함수의 반환값을 명시
+        curr = self.__head # 현재노드 : 더미헤드부터 탐색 ,index:-1
+        for index in range(i+1):
+            curr = curr.next
+        return curr
+```
+
+## 원소 추가하기
+```py
+    #원소추가하기(append)
+    def append(self,newItem):
+        prev = self.__getNode(self.__numItems -1)
+        newNode = ListNode(newItem, prev.next)
+        prev.next = newNode
+        self.__numItems +=1
+```
+
+## 원소 삭제하기
+```py
+    #원소 삭제하기
+    def pop(self,i):
+        if(i>=0 and i<=self.__numItems-1):
+            prev = self.__getNode(i - 1)
+            curr = prev.next
+            prev.next = curr.next
+            retItem = curr.item
+            self.__numItems -=1
+            return retItem
+        else:
+            return None
+```
+
+## value를 통해 원소 삭제하기
+```py
+    #value로 원소 삭제하기
+    def remove(self,x):
+        (prev,curr) = self.__findNode(x)
+        if curr != None:
+            prev.next = curr.next
+            self.__numItems -= -1
+            return x
+        else:
+            return None
+```
+
+## index를 통해 value 알려주기
+```py
+    #i번 원소 알려주기
+    def get(self, i):
+        if self.isEmpty():
+            return None
+        if(i >= 0 and i<=self.__numItems -1):
+            return self.__getNode(i).item
+        else:
+            return None
+```
+## value가 리스트의 몇번 원소인지 알려주기
+```py
+    #x가 연결리스트의 몇번째 원소인지 알려주기
+    def index(self,x)->int:
+        curr = self.__head.next #0번노드 : 더미헤드 다음 노드
+        for index in range(self.__numItems):
+            if curr.item ==x:
+                return index
+            else:
+                curr=curr.next
+        return -12345 #안쓰는 인덱스
+```
+
+## 기타 작업들
+```py
+
+    #비었는지 검증하기
+    def isEmpty(self) -> bool:
+        return self.__numItems == 0
+
+    #리스트의 사이즈 반환
+    def size(self) -> int:
+        return self.__numItems
+
+    #리스트 비우기
+    def clear(self):
+        self.__head = ListNode("dummy",None)
+        self.__numItems = 0
+        
+   def count(self,x) -> int:
+        cnt = 0
+        curr = self.__head.next #0번 노드
+        while curr != None:
+            if curr.item == x:
+                cnt+=1
+            curr = curr.next
+        return cnt
+        
+    def extend(self,a):
+        for index in range(a.size()):
+            self.append(a.get(index))
+            
+    def copy(self):
+        a = LinkedListBasic()
+        for index in range(self.__numItems):
+            a.append(self.get(index))
+        return a
+    
+    def reverse(self):
+        a = LinkedListBasic()
+        for index in range(self.__numItems):
+            a.insert(0,self.get(index))
+        self.clear()
+        for index in range(a.size()):
+            self.append(a.get(index))
+            
+    def sort(self)->None:
+        a = []
+        for index in range(self.__numItems):
+            a.append(self.get(index))
+        a.sort()
+        self.clear()
+        for index in range(len(a)):
+            self.append([index])
+            
+    def __findNode(self,x)->(ListNode,ListNode):
+        prev = self.__head
+        curr = prev.next
+        while curr != None:
+            if curr.item == x:
+                return(prev,curr)
+            else:
+                prev = curr
+                curr = curr.next
+                return (None,None)
+            
+    def printList(self):
+        curr = self.__head.next
+        while curr != None:
+            print(curr.item, end=' ')
+            curr = curr.next
+        print()
+```
+## 링크드 리스트 사용 예
+```py
+li = LinkedListBasic()
+li.append(30); li.insert(0,20)
+a = LinkedListBasic()
+a.append(4);a.append(3);a.append(3),a.append(2);a.append(1);
+li.extend(a)
+li.reverse()
+li.pop(0)
+print('count(3) : ',li.count(3))
+print("get(2) : ",li.get(2))
+li.printList()
+```
+
+<img width="128" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/a318ea38-9be1-4cf5-83ce-c509634fe17c">
 
 
 
@@ -140,8 +343,7 @@ print(li)
 
  
 ## Node
-- Node란 어떤 정보를 담고있는 하나의 단위로, 자료구조에서 개별적인 정보를 나타낼 때 사용하는 단위입니다.
-- 노드 간에는 연결이 가능하며 이는 주로 포인터(pointer)로 연결하곤 합니다.
+
 
 ### pointer
 - 데이터가 저장되는 공간을 가리키는 변수를 의미합니다.
