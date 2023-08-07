@@ -403,26 +403,114 @@ class ListStack:
 ## 비어있는지 점검
 - 스택이 비어있는지 확인하는 메서드
 - bool() 함수는 다음과 같은 경우 False를 리턴하고 나머지는 모두 True를 리턴한다.
-	- 객체가 비어있다: [],(),{}
- 	- 객체가 False
-    	- 객체의 값이 0
-	- 객체가 None
+    - 객체가 비어있다: [],(),{}
+    - 객체가 False
+    - 객체의 값이 0
+    - 객체가 None
 ```py       
     def isEmpty(self) -> bool:
         return not bool(self.__stack)
 ```
-
+## 스택 비우기
 
 ```py    
     def popAll(self):
         self.__stack.clear()
-        
+```
+
+```py        
     def printStack(self):
         print("Stack from top:",end=' ')
         for i in range(len(self.__stack)-1,-1,-1):
             print(self.__stack[i],end=' ')
         print()
 ```
+```py
+st1 = ListStack()
+print(st1.top())
+st1.push(100)
+st1.push(200)
+print("Top is",st1.top())
+st1.pop()
+st1.push('Monday')
+st1.printStack()
+print('isEmpty?',st1.isEmpty())
+```
+
+<img width="237" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/be6f193c-73b5-4b53-b16d-89257ab749c7">
+
+
+## 연결 리스트를 이용한 스택
+- 연결리스트 스택을 사용한다면 스택을 연결 리스트로 구성하고 연결 리스트의 어느 쪽을 스택 탑으로 삼을 것인지 결정해주면 된다.
+- 연결리스트의 맨 앞을 스택탑으로 삼아보자.
+```py
+class LinkedStack:
+    def __init__(self):
+        self.__list = LinkedListBasic()
+```
+
+## 원소 삽입
+- 링크드 리스트 맨 앞에 새 노드를 삽입하고 스탭 탑 레퍼런스를 새 노드로 바꿔주면 된다.
+- 링크드 리스트의 맨 앞을 스택 탑으로 삼기로 했으므로 새 노드는 연결 리스트 __list의 맨 앞에 삽입되었다.
+
+<img width="381" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/54f9ecc5-0c0e-46d3-82c2-067c86c10a84">
+
+```py        
+    def push(self,newItem):
+        self.__list.insert(0,newItem)
+```
+## 원소 삭제
+- 스택에서 원소를 삭제할 때는 무조건 스택 탑 원소를 삭제한다.
+- 연결 리스트에서 pop(i)는 i번째 원소를 삭제하면서 리턴하므로
+- pop(0)을 하면 스택 탑 원소를 삭제하면서 리턴한다.
+
+```py
+    def pop(self):
+        return self.__list.pop(0)
+```
+## 스택 탑 리턴하는 메서드
+- 스택이 비어있으면 알려줄 원소가 없음을 알린다.
+```py
+    
+    def top(self):
+        if self.isEmpty():
+            return None
+        else:
+            return self.__list.get(0)
+```
+
+## 비어있는지 검증
+- 연결 리스트가 비어있는지 보면 된다.
+```py 
+    def isEmpty(self)->bool:
+        return self.__list.isEmpty()
+```
+
+## 완전히 비우기
+```py    
+    def popAll(self):
+        self.__list.clear()
+        
+    def printStack(self):
+        print("Stack from top:",end=' ')
+        for i in range(self.__list.size()):
+            print(self.__list.get(i), end=' ')
+        print()
+```
+
+```py
+st1 = LinkedStack()
+st1.push(100)
+st1.push(200)
+print("Top is",st1.top())
+st1.pop()
+st1.push('Monday')
+st1.printStack()
+print('isEmpty?', st1.isEmpty())
+```
+
+<img width="226" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8953791d-9928-4b9f-81eb-4ea0f6bbc59f">
+
 
 <hr>
 <h1>구자료</h1>
