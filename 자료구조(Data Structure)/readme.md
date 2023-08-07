@@ -511,6 +511,11 @@ print('isEmpty?', st1.isEmpty())
 
 <img width="226" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8953791d-9928-4b9f-81eb-4ea0f6bbc59f">
 
+# 큐
+- 큐(Queue)는 줄을 의미하는 단어이다.
+- 큐는 우리에게 익숙하기 때문에 리스트와 더불어 가장 쉽게 받아들일 수 있는 자료구조다.
+- 가장 먼저 들어온
+
 
 <hr>
 <h1>구자료</h1>
