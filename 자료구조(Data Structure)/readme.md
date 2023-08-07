@@ -514,7 +514,128 @@ print('isEmpty?', st1.isEmpty())
 # 큐
 - 큐(Queue)는 줄을 의미하는 단어이다.
 - 큐는 우리에게 익숙하기 때문에 리스트와 더불어 가장 쉽게 받아들일 수 있는 자료구조다.
-- 가장 먼저 들어온
+- 가장 먼저 들어온 것이 가장 먼저 나가는 구조라는 뜻의 FIFO란 별칭을 가지고 있다.
+
+## 예시
+- 우리나라 항공사들이 고객이 쌓은 마일리지를 쓸 때 스택 방식으로 차감하였다.
+- 그러다 보니 최근에 쌓은 마일리지가 먼저 차감되고 오래 전에 쌓은 마일리지의 유효 기간이 지나버려 못쓰게 되는 경우가 빈번하게 발생했다.
+- 당국에서 개선 명령을 내려 지금은 큐 방식으로 차감하고 있다.
+
+## 큐의 개념과 원리
+- 큐의 맨 앞에 있는 원소를 front라 하고, 맨 뒤에 있는 원소를 tail이라고 한다.
+- 큐에 삽입할때는 삽입할 원소를 알려주어야 하지만 삭제를 할 때는 단순히 삭제하라고 한다.
+- 무조건 맨 앞에 있는 것을 삭제하기 때문이다.
+
+<img width="342" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/1a52407f-3025-462e-aa86-58faca3365c2">
+
+## 리스트를 이용한 큐
+```py
+class ListQueue:
+    def __init__(self):
+        self.__queue=[]
+    
+    def enqueue(self, x):
+        self.__queue.append(x)
+        
+    def dequeue(self):
+        if self.isEmpty():
+            return None
+        else:
+            return self.__queue[0]
+        
+    def isEmpty(self) -> bool:
+        return (len(self.__queue)==0)
+    
+    def dequeueAll(self):
+        self.__queue.clear()
+        
+    def printQueue(self):
+        print("Queue from front:",end=' ')
+        for i in range(len(self.__queue)):
+            print(self.__queue[i],end=' ')
+        print()
+
+q1 = ListQueue()
+q1.enqueue("Mon")
+q1.enqueue("Tue")
+q1.enqueue(1234)
+q1.enqueue("Wed")
+q1.dequeue()
+q1.enqueue('aaa')
+q1.printQueue()
+```
+
+<img width="331" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/fffa7274-a85d-4bad-ba1c-2863345e452a">
+
+## 연결리스트를 이용한 큐
+- 자연스럽게 리스트의 맨 앞을 front로, 맨 뒤를 tail로 삼는다.
+
+## 원소의 삽입
+- 큐에 원소를 삽입할 때는 맨 뒤에 넣는다.
+- 큐의 하부 구조로 사용되는 리스트의 맨 끝에 원소를 추가하면 된다.
+- 이때 리스트의 맨 끝에 원소를 추가하는 작업 append()를 사용한다.
+
+```py
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedListQueue():
+    def __init__(self):
+        self.front = None
+        self.rear = None
+```
+
+## 추가하기
+```py        
+    def enqueue(self, data):
+        new_node = Node(data)
+        
+        if self.front is None:
+            self.front = new_node
+            self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = self.rear.next
+```
+
+## 삭제
+```py
+    def dequeue(self):
+        dequeue_object = None
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            dequeue_object = self.front.data
+            self.front = self.front.next
+            
+        if self.front is None:
+            self.rear = None
+        return dequeue_object
+```
+## 가장 위에있는 데이터 찾기
+
+```py    
+    def peek(self):
+        front_object = None
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            front_object = self.front.data            
+        return front_object
+```
+
+## 비어있는지 검증하기
+
+```py    
+    def isEmpty(self):
+        is_empty = False
+        if self.front is None:
+            is_empty = True
+        return is_empty
+```
+
 
 
 <hr>
