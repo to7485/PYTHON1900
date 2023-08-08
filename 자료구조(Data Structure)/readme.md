@@ -790,5 +790,183 @@ bubbleSort(seq)
 
 <img width="303" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/a3d48bb6-ef45-4e68-8557-dd29bf6ea2aa">
 
+# 탐색
+- 데이터를 검색하여 찾는것을 의미합니다.
+
+## 탐색 유형
+- 순차 탐색
+- 이진 탐색
+
+```
+[‘a’,2,’g’,3,5] 여기에 알파벳 g가 있는지 없는지 확인하기 위해서 어떻게 해야 할까?
+```
+
+### 순차탐색
+```py
+for i in ['a',2,'g',3,5]:
+	if 'g' == i:
+		print('g 찾음')
+```
+
+### 순차탐색 vs 이진탐색
+
+<img width="472" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/13846c54-2f36-4d2b-aa2b-32aa4454eed8">
+
+### 순차탐색의 단점
+- 없는 데이터를 찾으려고 해도 끝까지 훑고나서 없다고 한다. 데이터가 100만개라면 어떻게 할것인가?
+
+## 이진탐색
+- 데이터가 정렬되어있다는 가정이 필요하다.
+- 절반을 떼어서 확인한다.
+- J는 L보다 앞에 있기 때문에 L의 뒤는 아예 탐색하지 않는다. 그리고 또 절반 또 절반을 탐색한다.
+- log n의 시간복잡도를 가지고 있다.
+
+```py
+seq1 = []
+seq2 = []
+for I in range(1,10000000):
+	seq1.append(i) # 오름차순 정렬
+	seq2.append(10000000 -i) # 내림차순 정렬
+
+#시간 체크 함수
+import time
+from datetime import timedelta
+
+#func의 수행시간 체크
+def checkTime(func, seq, value, title=''):
+	start = time.time()
+	func(seq,value)
+	end = time.time()
+	print(f'{title} : value = {value} 경과시간 {str(timedelta(seconds = end - start))}')
 
 
+def binarySearch(seq,value):
+	# 시작 인덱스와 끝 인덱스
+	start = 0
+	end = len(seq) -1 	while start <= end:
+		mid = (start+end) // 2
+		if seq[mid] < value:
+			start mid + 1
+		elif seq[mid] > value:
+			end = mid -1
+		else:
+			return mid
+
+print(binarySearch(seq1,100))
+print(binarySearch(seq1,10000))
+print(binarySearch(seq1,1000000))
+
+for cnt in [10000,100000,1000000,99999999]:
+	checkTime(binarySearch, seq1, cnt, ‘오름차순 정렬된 배열 순차 탐색’)
+	checkTime(binarySearch, seq1, cnt, ‘내림차순 정렬된 배열 순차 탐색’)
+	print()
+
+```
+# 트리
+계층적(Hierachical Relationship)관계를 표현하는 '비선형'자료구조
+
+<img width="434" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/3b8c3226-c08b-46b4-8858-430c19e27451">
+
+## 트리의 개념
+1. 트리는 하나의 루트 노드를 갖는다.
+2. 루트 노드는 0개 이상의 자식 노드를 갖고 잇다.
+3. 그 자식 노드 또한 0개 이상의 자식 노드를 갖고 있고, 이는 반복적으로 정의된다.
+
+<img width="462" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f2f2a2f2-4af1-4b1e-8217-29d66810b306">
+
+### 트리 관련 용어
+- 루트 노드(root node) : 부모가 없는 노드, 트리는 하나의 루트 노드만을 가진다.
+- 단말 노드(leaf node) : 자식이 없는 노드, ‘말단 노드’ 또는 ‘잎 노드’라고도 부른다.
+- 내부 노드(internal) 노드 : 단말 노드가 아닌 노드
+- 간선(edge) : 노드를 연결하는 선(link, branch라고도 부름)
+- 형제(sibling) : 같은 부모를 가지는 노드
+- 노드의 크기(size) : 자신을 포함한 모든 자손 노드의 개수
+  
+<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/8bb53555-d900-4c39-bf3a-2c923ca3eb86">
+
+- 트리의 높이(height) : 한 노드와 단말 노드 사이의 최대 깊이
+- 노드의 깊이(depth) : 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수
+
+<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/617e7f5a-8479-414b-a923-c1f833d69fba">
+
+- 노드의 레벨(level) : 트리의 특정 깊이를 가지는 노드의 집합(depth)가 같은 노드의 집합
+- 노드의 차수(degree) : 하위 트리 개수/ 간선수(degree) = 각 노드가 지닌 가지의 수
+- 트리의 차수(degree of tree) : 트리의 최대 차수
+
+## 일상생활에서의 트리
+- 비선형 자료구조의 계층적 관계를 표현한다.
+    - ex) 디렉토리 구조, 조직도
+ 
+
+<img width="418" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/91500bc3-0d30-4163-b8ac-250a835e58b0">
+
+
+## 트리 응용 분야
+1. Expression Tree(수직 트리)
+	1. 입력 수식 평가(evaluation)
+
+ <img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f8a28f4b-f5f4-4e0c-85c2-48251d233a02">
+
+2. 허프만 트리
+    - 압축 알고리즘 : 얼마나 자주 등장하는지에 따라서 트리구조로 만든 것 
+<img width="463" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/edc49b72-a388-4316-bc67-124504a1e225">
+
+
+3. 의사결정 트리
+    1. 머신러닝, 인공지능 분야를 배우면 가장 먼저 배우는 알고리즘
+  
+<img width="463" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/4f31b085-a01d-4528-a78a-45c41343f2f2">
+
+4. 최대힙, 최소힙
+    1. 최대값, 최소값 찾기 알고리즘
+
+<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/01b9dc68-2eac-4906-8bad-8bae664c4488">
+  
+5. Document Object Model(DOM)
+    1. 웹문서(HTML,XML...)
+  
+<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/73c5cf4e-a3d4-4dda-b334-379d9f890dad">
+
+## 트리의 구현
+1. 딕셔너리 사용
+```py
+tree = {}
+tree[1] = [2,3]
+tree[2] = [4,5]
+tree[3] = [6,7]
+tree[4] = [8]
+print(tree[1]) # [2,3]
+print(tree[tree[1][0]]) #tree[1][0] -> 2  / tree[2] -> [4,5]
+```
+
+2. 클래스 사용하기
+```py
+class Node:
+	def __init__(self,value = None, pointer = None):
+		self.value = value
+		self.pointer = pointer
+
+class NodeBT:
+	def __init__(self,value=None):
+		self.value = value
+		self.left = None #left subtree
+		self.right = None # right subtree
+
+	def __repr__(self):
+		return f'{self.value}'
+
+bt1 = NodeBT(1)
+bt2 = NodeBT(2)
+bt3 = NodeBT(3)
+bt4 = NodeBT(4)
+bt5 = NodeBT(5)
+bt6 = NodeBT(6)
+
+bt1.left = bt2
+bt1.right = bt3
+bt2.left = bt4
+bt2.right = bt5
+bt3.left = bt6
+
+print(bt1.left.right)
+```
