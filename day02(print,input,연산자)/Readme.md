@@ -79,10 +79,11 @@ print('제 생일은 %d년 %d월 %d일입니다.' %(year,month,day))
 >>> My name is James
 ```
 - 괄호안에 순번을 넣어 지정하여 출력을 할수도 있다.
-```
+```py
 'My name is {0}'.format('James')
 >>> My name is James
-```py
+```
+
 - 내가 출력하고자 하는 변수명을 지정할수도 있다.
 - 이럴경우 반드시 format()메서드에 '변수병=값'과 같은 방식으로 인수를 지정해야 한다.
 
@@ -91,6 +92,7 @@ print('제 생일은 %d년 %d월 %d일입니다.' %(year,month,day))
 >>> My name is James
 ```
 - 2개 이상의 인수를 사용하는 경우
+
 ```py
 'My name is {}. I\'m {}years old'.format('James',25)
 >>> My name is James. I'm 25years old
@@ -115,14 +117,15 @@ print(f'{who} make me {how}'
 
 - 중괄호 내부에서 함수의 호출이나 연산자도 사용할 수 있다.
 
-```
+```py
 age = 25
 print(f'내년에는 {age+1}살이 됩니다.')
 ```
 
 # 표준 입력
-- 키보드(표준입력장치)로부터 입력받을 때 사용한다. 
-```
+- 키보드(표준입력장치)로부터 입력받을 때 사용한다.
+
+```py
 변수명 = input('');
 Print(변수명);
 
@@ -133,7 +136,7 @@ Print(n);
 ```
 - 그런데 이렇게 개발을 한다고 하면 사용자들이 어떤걸 입력하라고 하는건지 알수가 없다.
 
-```
+```py
 n = input('정수를 입력하세요: ');
 Print(n);
 
@@ -155,16 +158,23 @@ print(type(n))
 
 ## 여러개를 입력하고 싶다면...
 
-```
+```py
 a, b = input().split()
 
 ```
 - int(input().split())과 같이 사용하면 TypeError가 발생한다.
 - input().split()의 결과가 list이기 때문이다.
 - 정수로 변환하려면 다음과 같이 하는것이 좋다.
-```
+
+```py
 a, b = map(int, input().split())
 ```
+
+### map() 함수
+- map(function, iterable)
+1. split()은 문자열을 나눠 리스트에 담아주는 함수
+2. 1을 바탕으로 처리된 리스트에 담겨있는 모든 요소를 int로 바꾸고자 할 때
+3. map()함수를 사용한다.
 
 # 연산자
 - 연산자(Operator)란 특정한 작업을 수행하기 위해서 사용하는 기호를 의미합니다.
