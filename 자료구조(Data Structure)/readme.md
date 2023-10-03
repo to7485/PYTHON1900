@@ -971,13 +971,12 @@ for cnt in [10000,100000,1000000,99999999]:
 
 4. 최대힙, 최소힙
     1. 최대값, 최소값 찾기 알고리즘
-
-<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/01b9dc68-2eac-4906-8bad-8bae664c4488">
-  
 5. Document Object Model(DOM)
     1. 웹문서(HTML,XML...)
-  
-<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/73c5cf4e-a3d4-4dda-b334-379d9f890dad">
+
+<img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/01b9dc68-2eac-4906-8bad-8bae664c4488">
+
+
 
 ## 트리의 구현
 1. 딕셔너리 사용
