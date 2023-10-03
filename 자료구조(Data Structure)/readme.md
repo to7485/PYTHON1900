@@ -908,14 +908,10 @@ for cnt in [10000,100000,1000000,99999999]:
  <img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/f8a28f4b-f5f4-4e0c-85c2-48251d233a02">
 
 2. 허프만 트리
-    - 압축 알고리즘 : 얼마나 자주 등장하는지에 따라서 트리구조로 만든 것 
-<img width="463" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/edc49b72-a388-4316-bc67-124504a1e225">
-
-
+    1. 압축 알고리즘 : 얼마나 자주 등장하는지에 따라서 트리구조로 만든 것
 3. 의사결정 트리
     1. 머신러닝, 인공지능 분야를 배우면 가장 먼저 배우는 알고리즘
-  
-<img width="463" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/4f31b085-a01d-4528-a78a-45c41343f2f2">
+<img width="463" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/edc49b72-a388-4316-bc67-124504a1e225">
 
 4. 최대힙, 최소힙
     1. 최대값, 최소값 찾기 알고리즘
