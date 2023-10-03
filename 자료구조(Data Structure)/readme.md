@@ -636,6 +636,62 @@ class LinkedListQueue():
         return is_empty
 ```
 
+## 라이브러리를 이용한 큐 구현
+- 파이썬의 collections 라이브러리는 유용한 자료구조를 제공하는 표준 라이브러리이다.
+- 그 중 많이 사용되는 deque가 있다.
+
+### deque 메서드
+|기능|메서드명|
+|----|--------|
+|가장 앞쪽에 원소 추가|appendleft(x)|
+|가장 뒤쪽에 원소 추가|append(x)|
+|가장 앞쪽에 있는 원소 제거|leftpop()|
+|가장 뒤쪽에 있는 원소 제거|pop()|
+
+```py
+from collections import deque
+queue = deque([])
+print(queue)
+
+queue.append(1)
+queue.append(2)
+print(queue)
+
+x = queue.popleft()
+print(queue, x)
+```
+
+## 백준 2161번 문제
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/7783f330-1193-4dc1-911c-6a8d5a624f77)
+
+```py
+from collections import deque
+
+n = int(input())
+queue = deque([])
+for i in range(1, n+1):
+    queue.append(i)
+    
+print(queue)
+
+while len(queue) != 1:
+    queue.popleft()
+    x = queue.popleft()
+    queue.append(x)
+    print(queue)
+print(queue[0])
+
+6
+deque([1, 2, 3, 4, 5, 6])
+deque([3, 4, 5, 6, 2])
+deque([5, 6, 2, 4])
+deque([2, 4, 6])
+deque([6, 4])
+deque([4])
+4
+```
+
 # 정렬(sort)
 - 전렬 알고리즘은 n개의 숫자가 주어졌을 때, 이를 사용자가 지정한 기준에 맞게 정렬하여 출력하는 알고리즘 입니다.
 - 예를 들어 n개의 숫자가 저장되어 있는 리스트를, 오름차순의 조건으로 작성하여 입력하면 오름차순으로 정렬된 리스트를 출력으로 구할 수 있습니다.
