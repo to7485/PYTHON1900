@@ -1014,9 +1014,15 @@ for cnt in [10000,100000,1000000,99999999]:
 
 ```
 # 트리
-계층적(Hierachical Relationship)관계를 표현하는 '비선형'자료구조
+- 트리는 나무를 닮은 자료구조이다.
+- 나무에는 뿌리가 있고 뿌리에서는 가지가 뻗어나오며 가지의 끝에는 잎이 달린다.
+- 이러한 나무의 구조를 사람들이 다양한 형태로 응용을 하고 있다.
+- 기업에서 전략을 수립할 때 사용하는 의사 결정트리, 게임의 성장 시스템에 사용되는 스킬 트리가 그 예이다.
 
-<img width="434" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/3b8c3226-c08b-46b4-8858-430c19e27451">
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/572ac3eb-80f5-4d3e-95a8-7894fb5bf3e5)
+
+- 현실의 나무는 뿌리가 땅 속에 있고 가지가 위로 뻗어나가는 모습이다.
+- 하지만 소프트웨어를 비롯한 추상 세계에 서식하는 트리는 뿌리가 심어진 곳이 따로 없기 때문에 가지가 위에서 아래로 뻗어나가는 그림으로 표현된다.
 
 ## 트리의 개념
 1. 트리는 하나의 루트 노드를 갖는다.
@@ -1071,7 +1077,29 @@ for cnt in [10000,100000,1000000,99999999]:
 
 <img width="510" alt="image" src="https://github.com/to7485/PYTHON1900/assets/54658614/01b9dc68-2eac-4906-8bad-8bae664c4488">
 
+## 이진트리
+- 하나의 노드가 N개의 자식 노드를 가질 수 도 있다.
+- 이진트리는 하나의 노드가 자식 노드를 2개까지만 가질 수 있는 트리이다.
 
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/a592579f-3cdb-4529-8a23-b91b5deea0d1)
+
+### 이진트리의 상태
+1. 포화 이진 트리
+    - 잎 노드를 제외한 모든 노드가 자식을 둘씩 가진 이진 트리
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/0d03ff16-4fe4-4c5f-9952-940556167537)
+
+2. 완전 이진 트리
+    - 잎 노드들이 트리 왼쪽부터 채워지고 있는 모습이 특징이다.
+  
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/755f5e63-c8a3-44f3-b292-21105eba44cc)
+
+    - 다음과 같은 모습은 완전 이진 트리가 아니다.
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/a2160ab3-f475-4175-8375-2ff08619fcf8)
+
+- 이진 트리는 일반 트리처럼 나무 모양의 자료를 담기 위한 자료구조가 아니라 컴파일러나 검색과 같은 알고리즘의 뼈대가 되는 특별한 자료구조다.
+- 특히 이진트리를 이용한 검색에서는 트리의 노드를 가능한 한 완전한 모습으로 유지해야 높은 성능을 낼 수 있다.
 
 ## 트리의 구현
 1. 딕셔너리 사용
@@ -1117,8 +1145,8 @@ bt3.left = bt6
 print(bt1.left.right)
 ```
 
-## 힙
-- 데이터에서 최댓값과 최솟값을 빠르게 찾기 위해 고안된 완전 이진 트리(Complete Binary Tree)
+# 힙
+- 데이터에서 최댓값과 최솟값을 빠르게 찾기 위해 고안된 완전 이진 트리(Complete Binary Tree)를 사용한 자료구조이다.
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/bc49fa8c-b88d-49b6-8ee2-4845e0710ccb)
 
@@ -1127,26 +1155,256 @@ print(bt1.left.right)
     - 왼쪽 자식 노드의 인덱스 = 부모 노드의 인덱스 * 2
     - 오른쪽 자식 노드의 인덱스 = 부모 노드의 인덱스 * 2 + 1
 
+## 힙을 사용하는 이유
+- 최솟값이나 최댓값을 찾기 위해 배열을 사용하면 O(n)만큼 시간이 걸린다.
+- 하지만 힙을 사용하면 O(logn)만큼 소요되므로, 배열을 사용할 때보다 빠르게 최솟값과 최댓값을 구할 수 있다.
+- 우선순위 큐와 같이 최댓값 또는 최솟값을 빠르게 찾아야 하는 알고리즘 등에 활용된다.
+
+## 힙의 특징
+1. 노드가 왼쪽부터 채워지는 완전 이진 트리 형태를 가진다.
+2. 중복을 허용한다.
+
+## 힙의 종류
+- 힙은 최대힙(Max heap)과 최소힙(Min heap)으로 나뉜다.
+### 최대 힙(Max heap)
+- 부모 노드의 값이 자식 노드의 값보다 크거나 같은 완전 이진 트리
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/d450b17d-a3a3-4b11-8cb2-372589b10c66)
+
+### 최소 힙(Min heap)
+- 부모 노드의 값이 자식 노드의 값보다 작거나 같은 완전 이진 트리
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/ac343219-aa7f-46fe-a54c-df806459900c)
 
 
+## 구현하기
+- 최대힙을 구현해보자.
+- 루트의 인덱스 번호를 1로 하기 위해, 리스트의 0번째 자리에 None을 넣는다.
+```py
+class Heap:
+    def __init__(self):
+        self.heap = []
+        self.heap.append(None)
+```
 
+### 삽입하기
+- 데이터를 삽입할 때, 맨 뒤부터 차례대로 저장한다.
+- 만약 삽입한 데이터가 부모보다 클 경우, 부모와 위치를 바꿔줘야 한다.
+```py
+    # 해당 노드가 부모 노드보다 큰지 비교
+    def check_swap_up(self, idx):
+        # 삽입한 모드의 부모 노드가 없을 경우
+        if idx <= 1:
+            return False
 
+        parent_idx = idx // 2
 
+        if self.heap[idx] > self.heap[parent_idx]:
+            return True
+        else:
+        return False
 
+    # 데이터 삽입
+    def insert(self, data):
+        self.heap.append(data)
+        idx = len(self.heap) - 1
 
+        # check_swap_up() 의 값이 참이라면 부모와 위치 바꾸기
+        while self.check_swap_up(idx):
+            parent_idx = idx // 2
 
+            self.heap[idx], self.heap[parent_idx] = self.heap[parent_idx], self.heap[idx]
+            idx = parent_idx
 
+        return True
+    
+    # 해당 노드가 부모 노드보다 큰지 비교
+    def check_swap_down(self, idx):
+        left_idx = idx * 2
+        right_idx = idx * 2 + 1
 
+        # 자식 노드가 하나도 없을 경우
+        if left_idx >= len(self.heap):
+            return False
 
+        # 왼쪽 자식 노드만 있을 경우
+        elif right_idx >= len(self.heap):
+            if self.heap[left_idx] > self.heap[idx]:
+                self.flag = 1
+                return True
+            else:
+                return False
 
+        # 자식 노드가 모두 있을 경우
+        else:
+            if self.heap[left_idx] > self.heap[right_idx]:
+                if self.heap[left_idx] > self.heap[idx]:
+                    self.flag = 1
+                    return True
+                else:
+                    return False
+            else:
+                if self.heap[right_idx] > self.heap[idx]:
+                    self.flag = 2
+                    return True
+                else:
+                    return False
+```
 
+### 삭제하기
+- 최댓값을 꺼내면 루트 노드가 비어있게 된다.
+- 가장 마지막 노드와 루트 노드의 자리를 바꾼 뒤, 자식 노드와 값을 비교한다.
+- 만약 루트 노드가 자식 노드보다 더 작을 경우, 자식과 위치를 바꾼다.
+```py
+    # 데이터 삭제
+    def pop(self):
+        if len(self.heap) <= 1:
+            return None
 
+        max = self.heap[1]
+        self.heap[1] = self.heap[-1]
+        del self.heap[-1]
+        idx = 1
 
+        # 0 = False, 1 = (왼쪽 자식과 swap), 2 = (오른쪽 자식과 swap)
+        self.flag = 0 
 
+        while self.check_swap_down(idx):
+            left_idx = idx * 2
+            right_idx = idx * 2 + 1
 
+            if self.flag == 1:
+                self.heap[idx], self.heap[left_idx] = self.heap[left_idx], self.heap[idx]
+                idx = left_idx
+            elif self.flag == 2:
+                self.heap[idx], self.heap[right_idx] = self.heap[right_idx], self.heap[idx]
+                idx = right_idx
+        return max
+```
 
+## 힙의 동작
 
+### 데이터의 삽입
+- 힙은 완전 이진 트리이기 때문에, 삽입할 노드는 기본적으로 왼쪽 최하단 노드부터 채워진다.
 
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/5e4cf8ae-fa36-4861-94ca-360c7b654030)
 
+1. 15를 왼쪽 최하단 노드에 삽입한다.
+2. 10을 왼쪽 최하단 노드에 삽입한뒤, 부모와 비교한다. 부모보다 작으므로 그 자리에 위치한다.
+3. 왼쪽 최하단 노드가 이미 있으므로 8을 오른쪽 최하단 노드에 삽입한 뒤, 부모와 비교한다. 작으므로 그 자리에 위치한다.
 
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/7daa7dc4-51f5-485a-b06a-c606ea2bc723)
 
+4. 3을 왼쪽 최하단 노드에 삽입한 뒤, 부모와 비교한다. 부모보다 작으므로 그 자리에 위치한다.
+5. 왼쪽 최하단 노드가 이미 있으므로 4를 오른쪽 최하단 노드에 삽입한 뒤, 부모와 비교한다. 부모보다 작으므로 그 자리에 위치한다.
+
+### 힙의 데이터보다 클경우
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/78dd05af-5f83-4770-b99e-86f610199e60)
+
+1. 20을 왼쪽 최하단부 노드에 삽입한다.
+2. 20의 부모 노드인 8과 비교한다. 20이 더 크므로 8과 위치를 바꾼다. (swap)
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/646a8dfd-2bc4-4265-80df-a3fcef4cada1)
+
+3. 20의 부모 노드인 15와 비교한다. 20이 더 크므로 15와 위치를 바꾼다. (swap)
+
+### 데이터 삭제
+- 힙 자료구조의 목표는 바로 최대값이나 최소값을 알아내는것이다.
+- 데이터가 삭제 된다면 가장 큰 값인 부모 노드의 값이 삭제된다.
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/4ead9c8f-723a-48b4-8853-fa2197521597)
+
+1. 최대값을 갖는 부모 노드를 삭제한다.
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/66726267-eb3d-4379-b126-ed1b089942c8)
+
+2. 부모 노드가 비었으므로, 가장 최하단부 노드를 루트로 옮긴다.
+3. 부모 노드인 8보다 값이 큰 자식 노드가 있는지 비교한다.
+    1) 왼쪽, 오른쪽 자식 노드 모두 부모 노드보다 클 경우
+        - 왼쪽 자식 노드와 오른쪽 자식 노드를 비교하여, 더 큰 자식 노드와 부모 노드의 위치를 바꾼다. (swap)
+    2) 왼쪽, 오른쪽 자식 노드 중 하나만 부모 노드보다 클 경우
+        - 둘 중에 부모 노드보다 큰 자식 노드와 부모 노드의 위치를 바꾼다. (swap)
+
+## heapq 모듈 사용하기
+- 파이썬에서 기본적으로 제공하는 heapq 모듈은 우선순위 큐(Priority Queue) 알고리즘을 제공한다.
+- 파이썬의 리스트를 사용해 인덱스 0부터 시작해 k번째 원소가 항상 자식 원소(2k+1, 2k+2)보다 작거나 같은 최소 힙의 형태로 정렬한다.
+
+### import
+```py
+import heapq #heapq 모듈은 파이썬의 내장 모듈이기 때문에 따로 설치하지 않아도 된다.
+```
+
+### 힙 생성하기
+- heapq 모듈은 파이썬의 리스트를 최소 힙 형태로 정렬하기 때문에 빈 리스트를 생성한 뒤, 모듈 함수를 호출할 때마다 생성한 리스트를 인자 값으로 넘겨야 한다.
+```py
+heap = []
+```
+
+### 삽입하기
+- 모듈의 heappush() 함수를 사용해 원소를 삽입할 수 있다.
+- 첫 번째 인자로는 대상 리스트를, 두 번째 인자로는 삽입할 값을 전달한다.
+```py
+heapq.heappush(heap, 10)
+heapq.heappush(heap, 6)
+heapq.heappush(heap, 13)
+heapq.heappush(heap, 5)
+
+print(heap)
+
+[5, 6, 13, 10]
+```
+
+### 삭제하기
+- 모듈의 heappop() 함수를 사용해 원소를 삭제할 수 있다.
+- 대상 리스트를 인자로 넘기면, 최솟값을 삭제한 뒤에 반환한다.
+```py
+print(heapq.heappop(heap))
+print(heap)
+
+5
+[6, 13, 10]
+```
+- 삭제하지 않고 최솟값을 출력하기 위해서는 heap[0]을 하면 된다.
+```py
+print(heap[0])
+```
+- 그렇다면 heap[1]에는 두 번째로 작은 원소가 들어있을까??
+- 답은 ❌
+- 작은 순서대로 정렬이 되어 있다면 10이 13보다 앞에 위치해야 하는데, 그렇지 않다.
+- 최소 힙은 최솟값을 빠르게 찾기 위한 알고리즘이지, 작은 순서대로 정렬하는 알고리즘이 아니다.
+
+### 리스트를 힙으로 변환하기
+- 이미 원소가 삽입되어 있는 리스트를 heapq 모듈을 사용해 힙으로 변환하는 것이 가능하다.
+- 이때는 heapify() 함수를 사용하고, 인자로 대상 리스트를 전달한다.
+```py
+heap = [7, 2, 4, 3, 1]
+heapq.heapify(heap)
+
+print(heap)
+[1, 2, 4, 3, 7]
+```
+
+## 백준 알고리즘 1927번
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/697bbe92-d402-4e69-98fc-033c9052f462)
+
+```py
+import heapq
+import sys
+
+N = int(sys.stdin.readline())
+heap = list()
+
+for i in range(N):
+    x = int(sys.stdin.readline())
+
+    if x==0:
+        if not heap:
+            print(0)
+        else:
+            print(heapq.heappop(heap))
+    
+    else:
+        heapq.heappush(heap, x)
+```
