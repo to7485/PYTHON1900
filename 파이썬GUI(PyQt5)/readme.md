@@ -233,6 +233,119 @@ if __name__ == '__main__':
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/aa21b2fb-03af-45a1-b33d-ce9bd77a4110)
 
+## 레이아웃(Layout)
+- 레이아웃 (Layout)은 어플리케이션 창에 위젯들을 배치하는 방식이다.
+- 레이아웃 관리는 GUI 프로그래밍에서 매우 중요한 요소이다.
+- PyQt5의 위젯들을 배치하는 방식에는 절대적 배치, 박스 레이아웃, 그리드 레이아웃 방식이 있다.
+
+### 절대적 배치
+- 절대적 배치(Absolute positioning) 방식은 각 위젯의 위치와 크기를 픽셀 단위로 설정해서 배치합니다.
+- 절대 배치 방식을 사용할 때는 다음의 제약을 이해하고 있어야 한다.
+    - 창의 크기를 조절해도 위젯의 크기와 위치는 변하지 않는다.
+    - 다양한 플랫폼에서 어플리케이션이 다르게 보일 수 있다.
+    - 어플리케이션의 폰트를 바꾸면 레이아웃이 망가질 수 있다.
+    - 레이아웃을 바꾸고 싶다면 완전히 새로 고쳐야 하며, 매우 번거롭다.
+ 
+```py
+## Ex 4-1. 절대적 배치.
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
+
+
+class MyApp(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        label1 = QLabel('Label1', self)
+        label1.move(20, 20)
+        label2 = QLabel('Label2', self)
+        label2.move(20, 60)
+
+        #라벨을 만들고 x좌표,y좌표에 위치하도록 옮겨준다.
+
+        btn1 = QPushButton('Button1', self)
+        btn1.move(80, 13)
+        btn2 = QPushButton('Button2', self)
+        btn2.move(80, 53)
+
+        #푸시버튼을 만들고 x,y좌표에 위치하도록 옮긴다.
+
+        self.setWindowTitle('Absolute Positioning')
+        self.setGeometry(300, 300, 400, 200)
+        self.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_())
+```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/17227232-3813-4ca1-9a57-ee9f52c6a714)
+
+
+### 박스 레이아웃
+- 박스 레이아웃 클래스를 이용하면 훨씬 유연하고 실용적인 레이아웃을 할 수 있다.
+- QHBoxLayout, QVBoxLayout은 여러 위젯을 수평으로 정렬하는 레이아웃 클래스이다.
+- QHBoxLayout, QVBoxLayout 생성자는 수평, 수직의 박스를 하나 만드는데, 다른 레이아웃 박스를 넣을 수도 있고 위젯을 배치할 수도 있다.
+
+```py
+## Ex 4-2. 박스 레이아웃.
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout, QVBoxLayout
+
+
+class MyApp(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        okButton = QPushButton('OK')
+        cancelButton = QPushButton('Cancel')
+        #두 개의 버튼을 만들었다.
+
+        hbox = QHBoxLayout()
+        hbox.addStretch(1)
+        hbox.addWidget(okButton)
+        hbox.addWidget(cancelButton)
+        hbox.addStretch(1)
+
+        #수평 박스를 하나 만들고, 두 개의 버튼과 양 쪽에 빈 공간을 추가합니다.
+        #이 addStretch() 메서드는 신축성있는 빈 공간을 제공합니다.
+        #두 버튼 양쪽의 stretch factor가 1로 같기 때문에 이 두 빈 공간의 크기는 창의 크기가 변화해도 항상 같습니다.
+
+        vbox = QVBoxLayout()
+        vbox.addStretch(3)
+        vbox.addLayout(hbox)
+        vbox.addStretch(1)
+
+        #다음으로 수평 박스(hbox)를 수직 박스(vbox)에 넣어줍니다.
+        #수직 박스의 stretch factor는 수평 박스를 아래쪽으로 밀어내서 두 개의 버튼을 창의 아래쪽에 위치하도록 합니다.
+        #이 때에도 수평 박스 위와 아래의 빈 공간의 크기는 항상 3:1을 유지합니다. stretch factor를 다양하게 바꿔보면, 의미를 잘 이해할 수 있습니다.
+
+        self.setLayout(vbox)
+
+        self.setWindowTitle('Box Layout')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_())
+```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/cf4df7c6-d4e0-48f8-ba99-8257586e78ec)
+
+### 그리드 레이아웃
 
 
 ## 창닫기
