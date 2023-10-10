@@ -93,6 +93,148 @@ if __name__ == '__main__':
 
 ![image](https://github.com/to7485/PYTHON1900/assets/54658614/2c4b65e6-798a-4100-b332-ddf8a65db6b4)
 
+# 위젯
+- 위젯은 어플리케이션을 이루는 기본적인 구성 요소입니다.
+- PyQt 툴킷은 간단하게 사용할 수 있는 다양한 위젯을 제공합니다.
+
+## QPushButton
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/58bc95db-9378-475a-8bbc-bad8373a8e7b)
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/06c65e5f-b86b-404f-889c-52375140b4bf)
+
+- 푸시 버튼(push button) 또는 명령 버튼(command button)은 사용자가 프로그램에 명령을 내려서 어떤 동작을 하도록 할 때 사용되는 버튼이다.
+- GUI 프로그래밍에서 가장 흔하게 사용되고 중요한 위젯이다.
+
+## 자주 쓰이는 메서드
+|메서드|설명|
+|----|----|
+|setCheckable()|True설정 시, 누른 상태와 그렇지 않은 상태를 구분한다.|
+|toggle()|상태를 바꾼다|
+|setIcon()|버튼의 아이콘을 설정한다.|
+|setEnable()|False설정 시, 버튼을 사용할 수 없다.|
+|isChecked()|버튼의 선택 여부를 반환한다.
+|setText()|버튼에 표시될 텍스트를 설정한다.|
+|text()|버튼에 표시된 텍스트를 반환한다.|
+
+## 자주 쓰이는 시그널
+|시그널|설명|
+|----|----|
+|clicked()|버튼을 클릭할 때 발생한다.|
+|pressed()|버튼이 눌렸을 때 발생한다.|
+|released()|버튼을 눌렀다 뗄 때 발생한다.|
+|toggled()|버튼의 상태가 바뀔 때 발생한다.|
+
+```py
+## Ex 5-1. QPushButton.
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout
+
+
+class MyApp(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        btn1 = QPushButton('&Button1', self)
+        btn1.setCheckable(True)#setCheckable()을 True로 설정해주면, 선택되거나 선택되지 않은 상태를 유지할 수 있게 됩니다.
+        btn1.toggle()#toggle() 메서드를 호출하면 버튼의 상태가 바뀌게 됩니다. 따라서 이 버튼은 프로그램이 시작될 때 선택되어 있습니다.
+        #QPushButton 클래스로 푸시 버튼을 하나 만듭니다.
+        #첫 번째 파라미터로는 버튼에 나타날 텍스트, 두 번째는 버튼이 속할 부모 클래스를 지정해줍니다.
+
+        btn2 = QPushButton(self)
+        btn2.setText('Button&2')#setText() 메서드로도 버튼에 표시될 텍스트를 지정할 수 있습니다.
+
+        btn3 = QPushButton('Button3', self)
+        btn3.setEnabled(False)#setEnabled()를 False로 설정하면, 버튼을 사용할 수 없게 됩니다.
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(btn1)
+        vbox.addWidget(btn2)
+        vbox.addWidget(btn3)
+
+        self.setLayout(vbox)
+        self.setWindowTitle('QPushButton')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_())
+
+```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/062a972d-2ac0-4ccf-8129-e63756fe223d)
+
+##QLabel
+- QLabel 위젯은 텍스트 또는 이미지 라벨을 만들 때 쓰입니다. 사용자와 어떤 상호작용을 제공하지는 않는다.
+- 라벨은 기본적으로 수평 방향으로는 왼쪽, 수직 방향으로는 가운데 정렬이지만 setAlignment() 메서드를 통해 조절할 수 있다.
+
+```py
+## Ex 5-2. QLabel.
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtCore import Qt
+
+
+class MyApp(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        label1 = QLabel('First Label', self) #생성자에 라벨 텍스트와 부모 위젯을 입력해줍니다.
+        label1.setAlignment(Qt.AlignCenter)
+        #setAlignment() 메서드로 라벨의 배치를 설정할 수 있습니다.
+        #Qt.AlignCenter로 설정해주면 수평, 수직 방향 모두 가운데 위치하게 됩니다.
+
+        label2 = QLabel('Second Label', self)
+        label2.setAlignment(Qt.AlignVCenter)
+        #수평 방향으로 가운데로 설정하려면 Qt.AlignHCenter를 입력해주면 됩니다.
+
+        font1 = label1.font()
+        font1.setPointSize(20)
+        #라벨에 사용될 폰트를 하나 만들었습니다.
+        #setPointSize() 메서드로 폰트의 크기를 설정해줍니다.
+
+        font2 = label2.font()
+        font2.setFamily('Times New Roman')
+        #setFamily() 메서드로 폰트의 종류를 'Times New Roman'으로 설정해줍니다.
+        font2.setBold(True)
+        #setBold(True)로 폰트를 진하게 설정합니다.
+
+
+        label1.setFont(font1)
+        label2.setFont(font2)
+
+        layout = QVBoxLayout()
+        layout.addWidget(label1)
+        layout.addWidget(label2)
+
+        self.setLayout(layout)
+
+        self.setWindowTitle('QLabel')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_())
+
+```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/aa21b2fb-03af-45a1-b33d-ce9bd77a4110)
+
+
+
 ## 창닫기
 - 창을 닫는 가장 간단한 방법은 타이틀바의 오른쪽 (Windows) 또는 왼쪽 (macOS) 'X' 버튼을 클릭하는 것입니다.
 - 이번에는 프로그래밍을 통해 창을 닫는 법을 알아보겠습니다.
@@ -145,5 +287,8 @@ if __name__ == '__main__':
     ex = MyApp()
     sys.exit(app.exec_())
 ```
+
+![image](https://github.com/to7485/PYTHON1900/assets/54658614/74bd748b-8f24-4987-bb1e-bce4dda30e7a)
+
 
 
